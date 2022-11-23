@@ -9,7 +9,7 @@
 
 #main {
     background-color: rgb(138, 138, 207);
-
+    min-height: 100vh;
 }
 
 .nav {
@@ -28,6 +28,10 @@
 
 #about-me-teaser {
     padding: 5px;
+}
+
+.breaker-box {
+    height: 30px;
 }
 
 .image-container{

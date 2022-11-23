@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+
 *{
     padding: none;
     margin: none;
@@ -10,6 +12,7 @@
 #main {
     background-color: white;
     min-height: 93vh;
+    font-size: 3vh;
 
 }
 
@@ -17,9 +20,22 @@
     flex-direction: column;
 }
 
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    align-items: stretch;
+    font-size: 2.5vh;
+    
+}
+
 .nav-link {
     text-decoration: none;
     color: black;
+     
 }
 
 #about-me-teaser-border {
@@ -60,8 +76,14 @@ footer {
 }
 
 h3 {
-    margin-top: 85px;
+    margin-top: 65px;
 }
 h2 {
     margin-top: 25px;
+}
+
+
+body{
+    font-family: 'Oswald', sans-serif;
+    
 }

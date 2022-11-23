@@ -4,14 +4,10 @@
 }
 
 #sidebar {
-    width: 20%;
-    height: 100vh;
     background-color: rgb(184, 97, 97);
 }
 
 #main {
-    width: 80%;
-    height: 100vh;
     background-color: rgb(138, 138, 207);
 
 }
@@ -25,7 +21,7 @@
     color: black;
 }
 
-#about-me-teaser {
+#about-me-teaser-border {
     border: 2px solid black;
     
 }

@@ -69,3 +69,12 @@ footer {
     padding-left: 10%;
     padding-right: 10%;
 }
+
+.placeicon {
+	font-family: fontawesome;
+}
+
+.custom-control-label::before {
+	background-color: #dee2e6;
+	border: #dee2e6;     
+}

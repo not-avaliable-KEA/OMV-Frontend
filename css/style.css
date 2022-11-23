@@ -4,12 +4,12 @@
 }
 
 #sidebar {
-    background-color: rgb(184, 97, 97);
+    background-color: rgb(255, 255, 255);
 }
 
 #main {
     background-color: rgb(138, 138, 207);
-    min-height: 100vh;
+    min-height: 93vh;
 
 }
 
@@ -47,7 +47,7 @@
 }
 
 footer {
-    background-color: rgb(190, 70, 70);
+    background-color: rgb(114, 112, 112);
     min-height: 7vh;
     width: 100%;
     text-align: center;
@@ -57,4 +57,11 @@ footer {
     color: black;
     font-size: 28px;
     top: 3vh;
+}
+
+h3 {
+    margin-top: 85px;
+}
+h2 {
+    margin-top: 25px;
 }

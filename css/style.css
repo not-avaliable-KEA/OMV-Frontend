@@ -4,11 +4,11 @@
 }
 
 #sidebar {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(214, 214, 214);
 }
 
 #main {
-    background-color: rgb(138, 138, 207);
+    background-color: white;
     min-height: 93vh;
 
 }

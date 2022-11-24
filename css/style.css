@@ -14,8 +14,12 @@ body {
 }
 
 #main {
-  min-height: 93vh;
+  min-height: 100vh;
   font-size: 3vh;
+}
+
+#route-between {
+  min-height: 93vh;
 }
 
 .nav {

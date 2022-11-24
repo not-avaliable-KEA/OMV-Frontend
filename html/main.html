@@ -1,124 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/OMW-Frontend/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link rel="stylesheet" href="/OMW-Frontend/css/style.css" />
-  <link rel="stylesheet" href="/css/style.css" />
+    <title>OMW</title>
+  </head>
 
-  <title>OMW</title>
-</head>
+  <body>
+    <main class="container-fluid">
+      <div class="row">
 
-<body>
+        <div class="col-12 col-md-3 col-lg-2" id="sidebar">
+          <div class="row">
 
-  <main class="container-fluid">
-    <div class="row">
+            <div class="col-12">
+              <nav class="navbar navbar-expand-md navbar-light">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
 
-      <div class="col-12 col-md-3 col-lg-2" id="sidebar">
-        <nav class="navbar navbar-expand-md navbar-light ">
+                <div
+                  class="collapse navbar-collapse"
+                  id="navbarSupportedContent"
+                >
+                  <ul class="nav navbar">
+                    <img
+                      class="image-sidebar d-none d-md-inline"
+                      src="https://via.placeholder.com/350x200.png"
+                    />
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#"
+                        >Home</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Work</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Live Sessions</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar">
-
-              <img class="image-sidebar d-none d-md-inline" src="https://via.placeholder.com/350x200.png" />
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Work</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Live Sessions</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
-
-            </ul>
           </div>
-        </nav>
+        </div>
+
+        <div class="col-12 col-md-9 col-lg-10" id="main">
+          <div class="row">
+
+            <div class="col-12">
+              <div id="landing-page">
+                <h1>oliver_matthew_volz</h1>
+
+                <h2>Intro</h2>
+
+                <div id="about-me-teaser-border">
+                  <p id="about-me-teaser">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+
+                    <button class="btn btn-secondary">Se more</button>
+                  </p>
+                </div>
+              </div>
+
+              <div class="breaker-box"></div>
+
+              <h3>Collabed Artists</h3>
+
+              <div class="row">
+                <div class="col-6 col-md-4 image-container">
+                  <img
+                    class="image"
+                    src="https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png"
+                  />
+                </div>
+
+                <div class="col-6 col-md-4 image-container">
+                  <img
+                    class="image1"
+                    src="https://upload.wikimedia.org/wikipedia/en/e/ed/The_Weeknd_-_Kiss_Land.png"
+                  />
+                </div>
+
+                <div class="col-6 col-md-4 image-container">
+                  <img
+                    class="image"
+                    src="https://upload.wikimedia.org/wikipedia/en/b/b9/The_Weeknd_-_Dawn_FM.png"
+                  />
+                </div>
+
+                <div class="col-6 d-md-none image-container">
+                  <img
+                    class="image"
+                    src="https://upload.wikimedia.org/wikipedia/en/3/39/The_Weeknd_-_Starboy.png"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-0 col-md-9"></div>
+                <div class="col-12 col-md-3">
+                  <button class="btn btn-secondary w-100">See more work</button>
+                </div>
+              </div>
+            </div>
+
+            
+            <footer class="col-12">Copyright 2022
+              <div>
+                <a href="https://www.instagram.com/oliver_matthew_volz/">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </footer>
+            
+          </div>
+        </div>
+
       </div>
+    </main>
 
-
-      <div class="col-12 col-md-9 col-lg-10" id="main">
-        <div id="landing-page">
-          <h1>oliver_matthew_volz</h1>
-
-          <h2>Intro</h2>
-
-          <div id="about-me-teaser-border">
-            <p id="about-me-teaser">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-              in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-              <button class="btn btn-secondary">Se more</button>
-            </p>
-          </div>
-        </div>
-
-        <div class="breaker-box"></div>
-
-        <h3>Collabed Artists</h3>
-
-        <div class="row">
-          <div class="col-6 col-md-4 image-container">
-            <img class="image" src="https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png" />
-          </div>
-
-          <div class="col-6 col-md-4 image-container">
-            <img class="image1" src="https://upload.wikimedia.org/wikipedia/en/e/ed/The_Weeknd_-_Kiss_Land.png" />
-          </div>
-
-          <div class="col-6 col-md-4 image-container">
-            <img class="image" src="https://upload.wikimedia.org/wikipedia/en/b/b9/The_Weeknd_-_Dawn_FM.png" />
-          </div>
-
-          <div class="col-6 d-md-none image-container">
-            <img class="image" src="https://upload.wikimedia.org/wikipedia/en/3/39/The_Weeknd_-_Starboy.png" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-0 col-md-9"></div>
-          <div class="col-12 col-md-3">
-            <button class="btn btn-secondary w-100">See more work</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>Copyright 2022
-    <div>
-      <a href="https://www.instagram.com/oliver_matthew_volz/">
-        <i class="fab fa-instagram"></i>
-      </a>
-    </div>
-  </footer>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  </body>
 </html>

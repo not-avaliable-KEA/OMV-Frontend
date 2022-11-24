@@ -103,3 +103,56 @@ async function deleteUser(id) {
         console.log("delete canceled");
       }
 }
+
+async function createUser() {
+    // get row
+    const form = document.getElementById("create-form");
+
+    // get values
+    let username = form.querySelector("#username-input").value
+    let password = form.querySelector("#password-input").value
+
+    // check for dublicate username 
+    let dublicateUsername = false;
+    users.forEach((u) => { if (u.username === username) dublicateUsername = true });
+
+    // set invalid message
+    if (dublicateUsername) {
+        form.querySelector("#username-input").classList.add("is-invalid");
+        return
+    } else {
+        form.querySelector("#username-input").classList.remove("is-invalid");
+    }
+
+    // makes data object for transfer
+    const createPackage = {
+        "username": username,
+        "password": password
+    }
+
+    await fetch(url, {method: 'POST', 
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(createPackage)});
+
+    alert(username + ' was created', 'success')
+
+    getUsers();
+
+    // set values to ""
+    form.querySelector("#username-input").value = "";
+    form.querySelector("#password-input").value = "";
+}
+
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+
+function alert(message, type) {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}

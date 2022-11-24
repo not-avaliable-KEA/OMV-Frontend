@@ -7,7 +7,6 @@ async function getUsers() {
     users = Array.from(await response.json());
 
     displayUsers();
-    //edit(3); // debugging ------------------------------------------------
 }
 getUsers();
 
@@ -34,7 +33,7 @@ function edit(id) {
     const user = users.filter((u) => u.id == id)[0];
 
     // get row
-    const row = document.getElementById("user" + id)
+    const row = document.getElementById("user" + id);
 
     // get clone
     const template = document.querySelector(`#template-edit-row`);
@@ -45,9 +44,9 @@ function edit(id) {
     clone.querySelector("#id").innerHTML = user.id;
 
     // set eventlistners
-    clone.querySelector("#save").addEventListener("click", () => saveUser(user.id))
-    clone.querySelector("#cancel").addEventListener("click", () => displayUsers(user.id))
-    clone.querySelector("#delete").addEventListener("click", () => deleteUser(user.id))
+    clone.querySelector("#save").addEventListener("click", () => saveUser(user.id));
+    clone.querySelector("#cancel").addEventListener("click", () => displayUsers(user.id));
+    clone.querySelector("#delete").addEventListener("click", () => deleteUser(user.id));
 
     // set clone
     row.innerHTML = "";
@@ -55,8 +54,42 @@ function edit(id) {
 }
 
 
-function saveUser(id) {
-    console.log("save for: " + id);
+async function saveUser(id) {
+    // get user
+    const user = users.filter((u) => u.id == id)[0];
+
+    // get row
+    const row = document.getElementById("user" + id);
+
+    // get values
+    let username = row.querySelector("#username-input").value
+    let password = row.querySelector("#password-input").value
+
+    // check for dublicate username 
+    let dublicateUsername = false;
+    users.forEach((u) => { if (u.username === username && u.id !== id) dublicateUsername = true });
+
+    // set invalid message
+    if (dublicateUsername) {
+        row.querySelector("#username-input").classList.add("is-invalid");
+        return
+    }
+
+    // check if username needs updating
+    if (user.username === username ) username = "";
+
+
+    // makes data object for transfer
+    const updatePackage = {
+        "username": username,
+        "password": password
+    }
+
+    await fetch(url + "/" + id, {method: 'PATCH', 
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(updatePackage)});
+
+    getUsers();
 }
 
 async function deleteUser(id) {

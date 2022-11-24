@@ -106,3 +106,7 @@ h2 {
   margin-top: 25px;
 }
 
+p{
+  text-align: justify;
+  font-size: 2vh;
+}

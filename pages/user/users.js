@@ -143,8 +143,6 @@ async function createUser() {
     form.querySelector("#password-input").value = "";
 }
 
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-
 function alert(message, type) {
   const wrapper = document.createElement('div')
   wrapper.innerHTML = [
@@ -154,5 +152,5 @@ function alert(message, type) {
     '</div>'
   ].join('')
 
-  alertPlaceholder.append(wrapper)
+  document.getElementById('liveAlertPlaceholder').append(wrapper)
 }

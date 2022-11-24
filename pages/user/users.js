@@ -7,7 +7,7 @@ async function getUsers() {
     users = Array.from(await response.json());
 
     displayUsers();
-    edit(3); // debugging ------------------------------------------------
+    //edit(3); // debugging ------------------------------------------------
 }
 getUsers();
 
@@ -59,6 +59,14 @@ function saveUser(id) {
     console.log("save for: " + id);
 }
 
-function deleteUser(id) {
-    console.log("delete for: " + id);
+async function deleteUser(id) {
+    // get user
+    const user = users.filter((u) => u.id == id)[0];
+
+    if (confirm("Are you sure you want to delete: " + user.username) == true) {
+        await fetch(url + "/" + id, {method: 'DELETE'});
+        getUsers();
+      } else {
+        console.log("delete canceled");
+      }
 }

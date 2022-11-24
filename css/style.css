@@ -6,11 +6,10 @@
 }
 
 #sidebar {
-  background-color: rgb(212, 212, 212);
+  background-color: rgb(175, 194, 191);
 }
 
 #main {
-  background-color: white;
   min-height: 93vh;
   font-size: 3vh;
 }
@@ -81,7 +80,6 @@
 
 footer {
   display: block;
-  background-color: white;
   min-height: 7vh;
   width: 100%;
   text-align: center;

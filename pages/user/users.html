@@ -42,9 +42,19 @@
 
 
 <template id="template-edit-row">
-        <th scope="row" id="id"></th>
-        <td id="username"> <input type="text" id="username-input"> </td>
-        <td id="password"> <input type="text" id="password-input" placeholder="**********"> </td>
+        <th scope="row" id="id" ></th>
+        <td>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="username-input">
+            <label for="username-input">Username</label>
+          </div>
+        </td>
+        <td>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="password-input" placeholder="**********">
+            <label for="password-input">Password</label>
+          </div>
+        </td>
         <td >
             <button id="save" class="btn btn-success">save</button> 
             <button id="cancel" class="btn btn-secondary">cancel</button> 

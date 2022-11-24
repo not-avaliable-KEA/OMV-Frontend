@@ -1,69 +1,110 @@
-*{
-    padding: none;
-    margin: none;
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+
+* {
+  padding: none;
+  margin: none;
 }
 
-#sidebar {
-    background-color: rgb(184, 97, 97);
-}
-
-#main {
-    background-color: rgb(138, 138, 207);
-    min-height: 93vh;
-}
-
-.nav {
-    flex-direction: column;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: black;
-}
-
-#about-me-teaser-border {
-    border: 2px solid black;
-    
-}
-
-#about-me-teaser {
-    padding: 5px;
-}
-
-.image-container{
-    width: 30%;
-}
-
-.image{
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 10%;
-}
-
-footer {
-    background-color: rgb(190, 70, 70);
-    min-height: 7vh;
-    width: 100%;
-    text-align: center;
-}
-
-.fa-instagram {
-    color: black;
-    font-size: 28px;
-    top: 3vh;
-}
-
-.horizontal-line-style{
-    padding-left: 10%;
-    padding-right: 10%;
-}
-
-.placeicon {
+body {
   font-family: "Oswald", sans-serif;
 }
 
-.custom-control-label::before {
-	background-color: #dee2e6;
-	border: #dee2e6;     
+#sidebar {
+  background-color: rgb(175, 194, 191);
+}
+
+#main {
+  min-height: 93vh;
+  font-size: 3vh;
+}
+
+.nav {
+  flex-direction: column;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  align-items: stretch;
+  font-size: 2.5vh;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+
+#about-me-teaser-border {
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+#about-me-teaser {
+  padding: 5px;
+}
+
+.breaker-box {
+  height: 30px;
+}
+
+.image-container {
+  margin: 10px 0;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform .2s;
+}
+.image1{
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform .2s;
+    border-radius: 20px;
+  }
+
+.image-sidebar {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.image:hover {
+  transform: scale(1.05);
+}
+.image1:hover {
+  transform: scale(1.05);
+}
+
+
+footer {
+  display: block;
+  min-height: 7vh;
+  width: 100%;
+  text-align: center;
+}
+
+.fa-instagram {
+  color: black;
+  font-size: 28px;
+  top: 3vh;
+}
+
+h3 {
+  margin-top: 65px;
+}
+h2 {
+  margin-top: 25px;
+}
+
+p{
+  text-align: justify;
+  font-size: 2vh;
 }

@@ -5,6 +5,10 @@
   margin: none;
 }
 
+body {
+  font-family: "Oswald", sans-serif;
+}
+
 #sidebar {
   background-color: rgb(175, 194, 191);
 }
@@ -77,6 +81,10 @@
 .image:hover {
   transform: scale(1.05);
 }
+.image1:hover {
+  transform: scale(1.05);
+}
+
 
 footer {
   display: block;
@@ -98,6 +106,3 @@ h2 {
   margin-top: 25px;
 }
 
-body {
-  font-family: "Oswald", sans-serif;
-}

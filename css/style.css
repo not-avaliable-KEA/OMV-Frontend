@@ -71,7 +71,7 @@ footer {
 }
 
 .placeicon {
-	font-family: fontawesome;
+  font-family: "Oswald", sans-serif;
 }
 
 .custom-control-label::before {

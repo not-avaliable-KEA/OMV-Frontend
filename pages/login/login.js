@@ -6,8 +6,6 @@ async function validateLogin(){
     const password = document.getElementById("password").value;
 
     if (await loginValidation(username, password) === true){
-        console.log(sessionStorage.getItem("username"))
-        console.log(sessionStorage.getItem("userId"))
         window.location = "#/"; // Needs to redirect to admin page.
         
     } else {

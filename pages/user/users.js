@@ -2,6 +2,11 @@ const url = "http://localhost:8080/api/v1/user"
 
 let users = []
 
+export default async function userInit() {
+    getUsers();
+    document.querySelector("#save").addEventListener("click", () => createUser());
+}
+
 /**
  * Responsible for getting user data from the database
  */
@@ -11,7 +16,6 @@ async function getUsers() {
 
     displayUsers();
 }
-getUsers();
 
 /**
  * Displays the user data in the table
@@ -21,15 +25,22 @@ function displayUsers() {
     tableBody.innerHTML = "";
 
     users.forEach(user => {
-        tableBody.innerHTML += (`<tr id="user${user.id}">
+        let elem = document.createElement("tr");
+        elem.id = `user${user.id}`;
+
+        elem.innerHTML = (`
         <th scope="row">${user.id}</th>
         <td>${user.username}</td>
         <td>**********</td>
         <td >
-            <button id="edit" class="btn btn-info" onclick="edit(${user.id})">edit</button> 
-            <button id="delete" class="btn btn-danger" onclick="deleteUser(${user.id})">delete</button>
-        </td>
-      </tr>`)
+            <button id="edit" class="btn btn-info" >edit</button> 
+            <button id="delete" class="btn btn-danger" >delete</button>
+        </td>`)
+
+        elem.querySelector("#edit").addEventListener("click", () => edit(user.id))
+        elem.querySelector("#delete").addEventListener("click", () => deleteUser(user.id))
+
+        tableBody.appendChild(elem);
 
     });
 }

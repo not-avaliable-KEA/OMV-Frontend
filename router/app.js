@@ -12,17 +12,22 @@ var htmlTemplateCache = new Map()
 // login
 import {init} from "../pages/login/login.js"
 
+// user admin
+import userInit from "../pages/user/users.js"
+
 // loading the pages
-// Home
-const templateHome = await loadHtml("./pages/home/home.html");
+const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
 const templateLogin = await loadHtml("./pages/login/login.html");
+const templateUsers = await loadHtml("./pages/user/users.html");
+
 /** 
  * Route constants.
  */
 const ROUTE_HOME = '/'
 const ROUTE_ABOUT = '/about'
 const ROUTE_LOGIN = "/login"
+const ROUTE_USERS = "/users"
 
 /**
  * setting the default action 
@@ -37,6 +42,8 @@ new Route(ROUTE_HOME, home)
 new Route(ROUTE_ABOUT, about)
 
 new Route(ROUTE_LOGIN, login)
+
+new Route(ROUTE_USERS, users)
 
 
 /**
@@ -69,6 +76,13 @@ function about() {
 function login() {
     renderTemplate(templateLogin);
     init();
+}
+
+
+
+function users() {
+    renderTemplate(templateUsers);
+    userInit();
 }
 
 /**

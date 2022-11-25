@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="Description" content="Enter your description here" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css">
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
-
-<body class="bg-info">
+<div class="template">
 <!-- Container containing all contents -->
-  <div class="container">
+  <div class="container bg-info">
     <div class="row justify-content-center">
       <div class="col-12 col-md-9 col-lg-7 col-xl-6"> <!-- size of the white box-->
         <!-- White Container -->
@@ -28,7 +16,7 @@
               <!-- User Name Input -->
               <div class="form-group row justify-content-center px-3">
                 <div class="col-9 px-0">
-                  <input type="text" placeholder="Username"
+                  <input type="text" placeholder="Username" id="username"
                          class="form-control border-info placeicon">
                 </div>
               </div>
@@ -38,6 +26,7 @@
                 <div class="col-9 px-0">
                   <input type="password"
                          placeholder="Password"
+                         id="password"
                          class="form-control border-info placeicon">
                 </div>
               </div>
@@ -63,7 +52,7 @@
               <!-- Log in Button -->
               <div class="form-group row justify-content-center">
                 <div class="col-3 px-3">
-                  <input type="submit" value="Log in" class="btn btn-block btn-info">
+                  <input type="button" value="Log in" class="btn btn-block btn-info" id="submit" >
                 </div>
               </div>
             </form>
@@ -72,5 +61,4 @@
       </div>
     </div>
   </div>
-</body>
-</html>
+</div>

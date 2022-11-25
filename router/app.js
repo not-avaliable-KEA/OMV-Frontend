@@ -28,6 +28,7 @@ const ROUTE_HOME = '/'
 const ROUTE_ABOUT = '/about'
 const ROUTE_LOGIN = "/login"
 const ROUTE_USERS = "/users"
+const ROUTE_LOGOUT = "/logout"
 
 /**
  * setting the default action 
@@ -42,6 +43,8 @@ new Route(ROUTE_HOME, home)
 new Route(ROUTE_ABOUT, about)
 
 new Route(ROUTE_LOGIN, login)
+
+new Route(ROUTE_LOGOUT, logout)
 
 new Route(ROUTE_USERS, users)
     .setPreFunction(pre)
@@ -80,7 +83,10 @@ function login() {
     init();
 }
 
-
+function logout() {
+    sessionStorage.clear();
+    window.location = "#/"
+}
 
 function users() {
     renderTemplate(templateUsers);

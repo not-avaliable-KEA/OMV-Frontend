@@ -1,5 +1,6 @@
 'use strict'
 import Route from "../router/router.js"
+import { renderTemplate, loadHtml } from "../js/utils.js"
 
 /**
  * Used to hold cached versions of used HTML templates.
@@ -7,11 +8,21 @@ import Route from "../router/router.js"
 var htmlTemplateCache = new Map()
 
 
+// import js files for pages
+// login
+import {init} from "../pages/login/login.js"
+
+// loading the pages
+// Home
+const templateHome = await loadHtml("./pages/home/home.html");
+const templateAbout = await loadHtml("./pages/about/about.html");
+const templateLogin = await loadHtml("./pages/login/login.html");
 /** 
  * Route constants.
  */
 const ROUTE_HOME = '/'
 const ROUTE_ABOUT = '/about'
+const ROUTE_LOGIN = "/login"
 
 /**
  * setting the default action 
@@ -24,6 +35,8 @@ Route.setDefaultFunction(pageNotFound);
 new Route(ROUTE_HOME, home)
    
 new Route(ROUTE_ABOUT, about)
+
+new Route(ROUTE_LOGIN, login)
 
 
 /**
@@ -41,7 +54,8 @@ function cloneHtmlTemplate(id) {
  * Home route action.
  */
 function home() {
-    document.querySelector('#view').appendChild(cloneHtmlTemplate('template-frontpage'));
+    //document.querySelector('#view').appendChild(cloneHtmlTemplate('template-frontpage')); 
+    renderTemplate(templateHome);
 }
 
 /**
@@ -49,7 +63,12 @@ function home() {
  */
 function about() {
     /*document.querySelector('#view').appentChild(cloneHtmlTemplate('template-about')); */
+    renderTemplate(templateAbout);
+}
 
+function login() {
+    renderTemplate(templateLogin);
+    init();
 }
 
 /**
@@ -71,5 +90,5 @@ function pre() {
  * Default action.
  */
  function pageNotFound() {
-    /*document.querySelector('#view').appentChild(cloneHtmlTemplate('template-404')); */
+    document.querySelector('#view').appentChild('template-404'); 
 }

@@ -75,7 +75,7 @@ function router(evt) {
     let route = resolveRoute(url);
 
 
-    if (route.preFunction != null && typeof route.preFunction === 'function') {
+    if (typeof route.preFunction === 'function') {
       if (route.preFunction()) {
         route.mainFunction();
       } else if (typeof route.failFunction === 'function') {
@@ -87,7 +87,6 @@ function router(evt) {
 
     
   } catch (e) {
-    console.log("try-catch stuff")
     if (typeof defaultFunction === 'function') defaultFunction();
     console.log(e);
   }

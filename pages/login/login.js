@@ -8,7 +8,7 @@ async function validateLogin(){
     if (await loginValidation(username, password) === true){
         console.log(sessionStorage.getItem("username"))
         console.log(sessionStorage.getItem("userId"))
-        window.location = "index.html"; // Needs to redirect to admin page.
+        window.location = "#/"; // Needs to redirect to admin page.
         
     } else {
         attempt --;// Decrementing by one.
@@ -51,4 +51,8 @@ async function validateLogin(){
     }
 }
 
+export function init() {
+    console.log("init");
+    document.getElementById("submit").addEventListener("click", () => validateLogin())
+}
 

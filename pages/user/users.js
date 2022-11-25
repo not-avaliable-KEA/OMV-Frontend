@@ -2,6 +2,9 @@ const url = "http://localhost:8080/api/v1/user"
 
 let users = []
 
+/**
+ * Responsible for getting user data from the database
+ */
 async function getUsers() {
     let response = await fetch(url)
     users = Array.from(await response.json());
@@ -10,6 +13,9 @@ async function getUsers() {
 }
 getUsers();
 
+/**
+ * Displays the user data in the table
+ */
 function displayUsers() {
     let tableBody = document.getElementById("user-body")
     tableBody.innerHTML = "";
@@ -28,6 +34,9 @@ function displayUsers() {
     });
 }
 
+/**
+ * Swaps the text fields for input fields and changes buttons for save, cancel and delete
+ */
 function edit(id) {
     // get user
     const user = users.filter((u) => u.id == id)[0];
@@ -53,7 +62,10 @@ function edit(id) {
     row.appendChild(clone);
 }
 
-
+/**
+ * When the save button is pressed, the user is saved to the database
+ * But before that a uniqueness test is made, and that the username is different from what it is now
+ */
 async function saveUser(id) {
     // get user
     const user = users.filter((u) => u.id == id)[0];
@@ -92,6 +104,9 @@ async function saveUser(id) {
     getUsers();
 }
 
+/**
+ * Deletes the user, after a confirmation check
+ */
 async function deleteUser(id) {
     // get user
     const user = users.filter((u) => u.id == id)[0];
@@ -104,6 +119,10 @@ async function deleteUser(id) {
       }
 }
 
+/**
+ * Creates the user
+ * Performs uniqueness check
+ */
 async function createUser() {
     // get row
     const form = document.getElementById("create-form");
@@ -143,6 +162,9 @@ async function createUser() {
     form.querySelector("#password-input").value = "";
 }
 
+/**
+ * for the alert in create block
+ */
 function alert(message, type) {
   const wrapper = document.createElement('div')
   wrapper.innerHTML = [

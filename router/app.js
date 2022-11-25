@@ -44,6 +44,8 @@ new Route(ROUTE_ABOUT, about)
 new Route(ROUTE_LOGIN, login)
 
 new Route(ROUTE_USERS, users)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
 
 
 /**
@@ -89,20 +91,24 @@ function users() {
  * Fail action.
  */
 function fail() {
-    document.querySelector('#view').appentChild(cloneHtmlTemplate('template-ups'));
+    window.location = "#/"
 }
 
 /**
  * Pre action.
  */
 function pre() {
-    console.log("hello, world! from preFunction");
-    return Math.round(Math.random())
+
+    if (sessionStorage.getItem("username") == "" 
+        || sessionStorage.getItem("userId") <= 0) 
+        return false;
+
+    return true;
 }
 
 /**
  * Default action.
  */
  function pageNotFound() {
-    document.querySelector('#view').appentChild('template-404'); 
+    document.querySelector('#view').innerHTML = ('page-not-found-404'); 
 }

@@ -3,7 +3,7 @@
 /**
  * Defines a route, and the functions related to it
  */
-export default class Route {
+export class Route {
   path;
   mainFunction;
   preFunction;
@@ -95,5 +95,7 @@ function router(evt) {
 /**
  * Window event hooks.
  */
-window.addEventListener("load", router);
-window.addEventListener("hashchange", router);
+export function start() {
+  router();
+  window.addEventListener("hashchange", router);
+}

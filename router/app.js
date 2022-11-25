@@ -1,5 +1,5 @@
 'use strict'
-import Route from "../router/router.js"
+import {Route, start} from "../router/router.js"
 import { renderTemplate, loadHtml } from "../js/utils.js"
 
 /**
@@ -112,3 +112,9 @@ function pre() {
  function pageNotFound() {
     document.querySelector('#view').innerHTML = ('page-not-found-404'); 
 }
+
+
+/**
+ * starting the router
+ */
+start();

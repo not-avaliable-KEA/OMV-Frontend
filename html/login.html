@@ -39,6 +39,7 @@
                 <div class="col-9 px-0">
                   <input type="password"
                          placeholder="Password"
+                         id="password"
                          class="form-control border-info placeicon">
                 </div>
               </div>
@@ -64,7 +65,7 @@
               <!-- Log in Button -->
               <div class="form-group row justify-content-center">
                 <div class="col-3 px-3">
-                  <input type="submit" value="Log in" class="btn btn-block btn-info">
+                  <input type="button" value="Log in" class="btn btn-block btn-info" id="submit" onclick="validateLogin()">
                 </div>
               </div>
             </form>

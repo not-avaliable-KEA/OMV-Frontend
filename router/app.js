@@ -1,5 +1,5 @@
 'use strict'
-import Route from "../router/router.js"
+import {Route, start} from "../router/router.js"
 import { renderTemplate, loadHtml } from "../js/utils.js"
 
 /**
@@ -12,17 +12,23 @@ var htmlTemplateCache = new Map()
 // login
 import {init} from "../pages/login/login.js"
 
+// user admin
+import userInit from "../pages/user/users.js"
+
 // loading the pages
-// Home
-const templateHome = await loadHtml("./pages/home/home.html");
+const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
 const templateLogin = await loadHtml("./pages/login/login.html");
+const templateUsers = await loadHtml("./pages/user/users.html");
+
 /** 
  * Route constants.
  */
 const ROUTE_HOME = '/'
 const ROUTE_ABOUT = '/about'
 const ROUTE_LOGIN = "/login"
+const ROUTE_USERS = "/users"
+const ROUTE_LOGOUT = "/logout"
 
 /**
  * setting the default action 
@@ -37,6 +43,12 @@ new Route(ROUTE_HOME, home)
 new Route(ROUTE_ABOUT, about)
 
 new Route(ROUTE_LOGIN, login)
+
+new Route(ROUTE_LOGOUT, logout)
+
+new Route(ROUTE_USERS, users)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
 
 
 /**
@@ -71,24 +83,44 @@ function login() {
     init();
 }
 
+function logout() {
+    sessionStorage.clear();
+    window.location = "#/"
+}
+
+function users() {
+    renderTemplate(templateUsers);
+    userInit();
+}
+
 /**
  * Fail action.
  */
 function fail() {
-    document.querySelector('#view').appentChild(cloneHtmlTemplate('template-ups'));
+    window.location = "#/"
 }
 
 /**
  * Pre action.
  */
 function pre() {
-    console.log("hello, world! from preFunction");
-    return Math.round(Math.random())
+
+    if (sessionStorage.getItem("username") == "" 
+        || sessionStorage.getItem("userId") <= 0) 
+        return false;
+
+    return true;
 }
 
 /**
  * Default action.
  */
  function pageNotFound() {
-    document.querySelector('#view').appentChild('template-404'); 
+    document.querySelector('#view').innerHTML = ('page-not-found-404'); 
 }
+
+
+/**
+ * starting the router
+ */
+start();

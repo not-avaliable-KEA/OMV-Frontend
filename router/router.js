@@ -94,7 +94,6 @@ let defaultFunction = "";
 function resolveRoute(path) {
   for (const route of routes) {
     if (route.path.test(path)) {
-      console.log("yes");
       return route;
     }
   }

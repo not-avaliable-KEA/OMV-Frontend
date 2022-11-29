@@ -1,7 +1,10 @@
 
-          let slideIndex = 0;
+//  Slideshow script heavily based on: "https://www.w3schools.com/howto/howto_js_slideshow.asp"          
+          
+let slideIndex = 0;
   
-  function showSlides() {
+
+    function showSlides() {
           //Create an array with all the elements with the "conainter-slide" class
           let slides = document.getElementsByClassName("container-slide")
 
@@ -13,7 +16,8 @@
           }
           console.log(slides)
 
-          //increase teh index by 1 - used to keep track of when to reset the slideshow
+          //increase the index by 1 - used to keep track of when to "reset" 
+          //the slideshow, showing the first section again
           slideIndex++;
 
           //resets the index to 1

@@ -16,6 +16,7 @@ import {init} from "../pages/login/login.js"
 import userInit from "../pages/user/users.js"
 
 //TODO: work js - 
+import coversInit from "../pages/work/work.js"
 
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");

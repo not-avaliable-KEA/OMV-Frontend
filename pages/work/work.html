@@ -1,29 +1,35 @@
 <div class="template">
-
-    <div class="container"></div>
+    <template>
+        <div class="container">
+            <table class="table" id="cover-body"></table>
+        </div>
+    </template>
 
     <div class="col card rounded m-2 p-2">
         <div class="card-body">
             <h5 class="card-title">Upload cover</h5>
             <form id="cover" class="form">
                 <div class="row">
-                    <div>
-                        <label for="artistName" class="artistName" class="col">Artist name</label>
-                        <input id="artistName" class="col" name="artistName" type="text" required>
+                    <form id="cover-form">
+                        <label for="artistName-input" class="col">Artist name</label>
+                        <input id="artistName-input" class="col" name="artistName-input" type="text" required>
                         <br><br>
-                        <label for="singleName" class="artistName" class="col">Single name</label>
-                        <input id="singleName" class="col" name="artistName" type="text" required>
+                        <label for="singleName" class="col">Single name</label>
+                        <input id="singleName" class="col" name="singleName" type="text" required>
                         <br><br>
 
-                    </div>
-                    <div>
+            
+                    <!--<div>
                         <label for="coverImage" class="col-2"><label>
-                            <input id="coverImage" class=" btn btn-primary col" name="coverImage" type="file" accept="image/png, image/jpeg" required>
+                        <input id="coverImage" class=" btn btn-primary col" name="coverImage" type="file" accept="image/png, image/jpeg" required>
                     </div>
+                    -->
                     <br>
                     <div>
-                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        <button id="submit" type="submit" onclick="createcover()"class="btn btn-primary">Create</button>
                     </div>
+                    </form>
+                        
                 </div>
             </form>
         </div>

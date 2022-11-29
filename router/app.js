@@ -16,14 +16,14 @@ import {init} from "../pages/login/login.js"
 import userInit from "../pages/user/users.js"
 
 // blog
-import initBlog from "../pages/blog/blog.js"
+import initBlog from "../pages/blog/viewAll/blog.js"
 
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
 const templateLogin = await loadHtml("./pages/login/login.html");
 const templateUsers = await loadHtml("./pages/user/users.html");
-const templateBlog  = await loadHtml("./pages/blog/blog.html");
+const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
 
 /** 
  * Route constants.

@@ -60,6 +60,25 @@ body {
   margin: 10px 0;
 }
 
+.container-slide{
+  display: none;
+
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 3s;
+}
+
+@keyframes fade {
+  from {opacity: .7}
+  to {opacity: 1}
+}
+
+.active {
+  display: flex;
+}
+
 .image {
   display: block;
   width: 100%;
@@ -67,6 +86,7 @@ body {
   transition: transform 0.2s;
   border-radius: 20px;
 }
+
 .image1 {
   display: block;
   width: 100%;
@@ -89,12 +109,26 @@ body {
 }
 
 
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  display: block;
+  width: 100%;
+  height: 0%;
+  transition: transform 0.2s;
+  border-radius: 20px;
+  transition: 0.5s ease;
+  opacity: 0;
+}
+
 .text1 {
   color: white;
   font-size: 28px;
   position: absolute;
   top: 80%;
-  left: 16.5%;
+  left: 30%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -123,20 +157,6 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
-}
-
-.image-container:hover .overlay {
-  opacity: 1;
-}
-
-.overlay {
-  display: block;
-  width: 100%;
-  height: 0%;
-  transition: transform 0.2s;
-  border-radius: 20px;
-  transition: 0.5s ease;
-  opacity: 0;
 }
 
 footer {

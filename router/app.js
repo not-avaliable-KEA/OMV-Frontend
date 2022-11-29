@@ -15,11 +15,15 @@ import {init} from "../pages/login/login.js"
 // user admin
 import userInit from "../pages/user/users.js"
 
+// blog
+import initBlog from "../pages/blog/blog.js"
+
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
 const templateLogin = await loadHtml("./pages/login/login.html");
 const templateUsers = await loadHtml("./pages/user/users.html");
+const templateBlog  = await loadHtml("./pages/blog/blog.html");
 
 /** 
  * Route constants.
@@ -29,6 +33,7 @@ const ROUTE_ABOUT = '/about'
 const ROUTE_LOGIN = "/login"
 const ROUTE_USERS = "/users"
 const ROUTE_LOGOUT = "/logout"
+const ROUTE_BLOG = "/blog"
 
 /**
  * setting the default action 
@@ -50,6 +55,7 @@ new Route(ROUTE_USERS, users)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
+new Route(ROUTE_BLOG, blog);
 
 /**
  * Clones an embedded HTML template, from the HTML file, via an id.
@@ -91,6 +97,11 @@ function logout() {
 function users() {
     renderTemplate(templateUsers);
     userInit();
+}
+
+function blog() {
+    renderTemplate(templateBlog);
+    initBlog();
 }
 
 /**

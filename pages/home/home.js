@@ -62,8 +62,8 @@ function elementsAddEventListener() {
             slides[slideIndex-1].classList.add("active")
         }
 
-        //runs this function every 3 seconds
-        setTimeout(showSlides, 3000)
+        //runs this function every 5 seconds - the setTimeout works in milliseconds, so 1000 = 1 sec
+        setTimeout(showSlides, 5000)
     }
 
     //initial function that's fired to start the script up

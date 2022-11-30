@@ -2,11 +2,6 @@
 import {Route, start} from "../router/router.js"
 import { renderTemplate, loadHtml } from "../js/utils.js"
 
-/**
- * Used to hold cached versions of used HTML templates.
- */
-var htmlTemplateCache = new Map()
-
 
 // import js files for pages
 // login

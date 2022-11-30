@@ -11,16 +11,16 @@ async function createBlog(event) {
     event.preventDefault()
 
     let data = {
-        title: document.getElementById("title").value, 
-        text: document.getElementById("text").value,
-        picture: fileAsBase64,
+        title:       document.getElementById("title").value, 
+        text:        document.getElementById("text").value,
+        picture:     fileAsBase64,
         createdDate: new Date(Date.now())
                                   .toISOString()
                                   .replace("T", " ")
                                   .substring(0, 16)
     }
 
-    let result = fetch(url, {
+    let response = await fetch(url, {
         method: "POST",
         credentials: "include",
         headers: {'Content-Type': 'application/json'}, 
@@ -28,7 +28,16 @@ async function createBlog(event) {
     });
     
 
+    if (await response.ok) {
+        document.getElementById("title").value = "";
+        document.getElementById("text").value = "";
+        document.getElementById("picture").value = "";
+        document.getElementById('imagePreview').src = "";
 
+        window.location = "#/blog"
+    } else {
+        throw new Error("Could not send the info to the database");
+    }
 }
 
 // to load the image when the input field updates

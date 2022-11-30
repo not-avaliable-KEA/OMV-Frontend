@@ -32,6 +32,7 @@ const ROUTE_USERS = "/users"
 const ROUTE_LOGOUT = "/logout"
 const ROUTE_BLOG = "/blog"
 const ROUTE_CREATE_BLOG = "/create-blog"
+const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
 
 /**
  * setting the default action 
@@ -56,6 +57,10 @@ new Route(ROUTE_USERS, users)
 new Route(ROUTE_BLOG, blog);
 
 new Route(ROUTE_CREATE_BLOG, createBlog)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
+
+new Route(ROUTE_EDIT_BLOG, editBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
@@ -109,6 +114,11 @@ function blog() {
 function createBlog() {
     renderTemplate(templateCreatBlog);
     initCreateBlog();
+}
+
+function editBlog(id) {
+    renderTemplate(templateCreatBlog);
+    initCreateBlog(id);
 }
 
 /**

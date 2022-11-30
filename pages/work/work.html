@@ -8,31 +8,34 @@
     <div class="col card rounded m-2 p-2">
         <div class="card-body">
             <h5 class="card-title">Upload cover</h5>
+            <div><br></div>
             <form id="cover" class="form">
                 <div class="row">
-                    <form id="cover-form">
-                        <label for="artistName-input" class="col">Artist name</label>
-                        <input id="artistName-input" class="col" name="artistName-input" type="text" required>
-                        <br><br>
-                        <label for="singleName" class="col">Single name</label>
-                        <input id="singleName" class="col" name="singleName" type="text" required>
-                        <br><br>
+                        <form id="cover-form">
+                        <div>
+                        <label for="artistName">Artist name</label>
+                        <input id="artistName" class="col" name="artistName-input" type="text" required>
+                        </div>
+                        <div> <br></div>
 
-            
-                    <!--<div>
-                        <label for="coverImage" class="col-2"><label>
-                        <input id="coverImage" class=" btn btn-primary col" name="coverImage" type="file" accept="image/png, image/jpeg" required>
-                    </div>
-                    -->
-                    <br>
-                    <div>
-                        <button id="submit" type="submit" onclick="createcover()"class="btn btn-primary">Create</button>
-                    </div>
+                        <div>
+                        <label for="singleName">Single name</label>
+                        <input id="singleName" class="col" name="singleName" type="text" required>
+                        </div>
+                        <div><br></div>
+
+                        <div>
+                        <label for="coverImage" class="col"></label>
+                        <input id="coverImage" class="form-control-file" name="coverImage" type="file" accept="image/png, image/jpeg" required>
+                        </div>
+
+                        <div>
+                        <label class="col"></label>
+                        <button id="submit" type="submit" onclick="createcover()"class="form-control" style="background-color: whitesmoke">Create</button>
+                        </div>
                     </form>
-                        
                 </div>
             </form>
         </div>
     </div>
-</div>
 </div>

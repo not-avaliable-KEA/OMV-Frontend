@@ -22,7 +22,7 @@ function elementsAddEventListener() {
         })
 
         //on mouse leave event - does something whenever your mouse leaves the element
-        //in this case, it sets the "isHovering" boolean to true when you stop hovering over an element
+        //in this case, it sets the "isHovering" boolean to false when you stop hovering over an element
         image.addEventListener('mouseleave', (event) => {
             console.log(isHovering)
             isHovering = false;

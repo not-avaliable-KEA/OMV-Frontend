@@ -4,6 +4,7 @@ let covers = []
 
 export default async function coversInit() {
     getCovers();
+    console.log("hej")
     document.querySelector("#submit").addEventListener("click", () => createcover());
 }
 

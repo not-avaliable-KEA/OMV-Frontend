@@ -9,8 +9,6 @@ export default async function initCreateBlog() {
 
 async function createBlog(event) {
     event.preventDefault()
-    
-    //picture = loadFile(document.getElementById("picture").value)
 
     let data = {
         title: document.getElementById("title").value, 
@@ -22,20 +20,21 @@ async function createBlog(event) {
                                   .substring(0, 16)
     }
 
-    console.log(fileAsBase64);
-
-    fetch(url, {
+    let result = fetch(url, {
         method: "POST",
         credentials: "include",
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(data)
-    })
+    });
+    
+
+
 }
 
 // to load the image when the input field updates
 let fileAsBase64 = "";
 async function loadAndPreviewFile() {
-    
+
     fileLoad("#picture", (file) => {
         fileAsBase64 = file;
         document.querySelector('#imagePreview').src = file

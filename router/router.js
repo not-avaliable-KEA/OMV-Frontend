@@ -11,11 +11,12 @@ export class Route {
 
   /**
    * Constructor for Route, takes a path as a string, and the function to be executed, when the path is hit
+   * we set path
    */
   constructor(path, mainFunction) {
     this.path = path;
     this.mainFunction = mainFunction;
-
+    //routes; 
     routes[path] = this;
   }
 
@@ -56,10 +57,11 @@ let defaultFunction = "";
 
 /**
  * Gets a route.
+ * 
  */
 function resolveRoute(route) {
   try {
-    return routes[route];
+    return routes[route];//vi get the route saved under the specifik path. 
   } catch (e) {
     return new Error(`Route ${route} not found`);
   }
@@ -68,14 +70,15 @@ function resolveRoute(route) {
 /**
  * Routes the urls in the browser location bar.
  */
-function router(evt) {
-  let url = window.location.hash.slice(1) || "/";
+function router() {
+  let url = window.location.hash.slice(1) || "/";//window.location ; points at URL - we slice at hash (cause we wanna route between fragments)
+
 
   try {
     let route = resolveRoute(url);
 
 
-    if (typeof route.preFunction === 'function') {
+    if (typeof route.preFunction === 'function') {//if route.prefunction typeoff is function, we hit the if statement - (login)
       if (route.preFunction()) {
         route.mainFunction();
       } else if (typeof route.failFunction === 'function') {
@@ -94,6 +97,9 @@ function router(evt) {
 
 /**
  * Window event hooks.
+ * hook means; when this happend, the function should happen. 
+ * we call the function router
+ * hashchange; means if the URL changes - 
  */
 export function start() {
   router();

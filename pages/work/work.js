@@ -3,9 +3,8 @@ const url = "http://localhost:8080/api/v1/work"
 let covers = []
 
 export default async function coversInit() {
+    document.querySelector("#submit").addEventListener("click", (event) => createcover(event));
     getCovers();
-    console.log("hej")
-    document.querySelector("#submit").addEventListener("click", () => createcover());
 }
 
 /**
@@ -22,25 +21,25 @@ async function getCovers() {
  */
 function displayCovers() {
     let tableBody = document.getElementById("cover-body")
-    tableBody.innerHTML = "";
 
     covers.forEach(cover => {
         let elem = document.createElement("tr");
         elem.id = `cover${cover.id}`;
+        
 
         elem.innerHTML = (`
         <th scope="row">${cover.id}</th>
-        <td>${cover.coverName}</td>
+        <td>${cover.image}</td>
         <td>**********</td>
         <td >
             <button id="edit" class="btn btn-info" >edit</button> 
             <button id="delete" class="btn btn-danger" >delete</button>
         </td>`)
 
+
         elem.querySelector("#edit").addEventListener("click", () => edit(cover.id))
         elem.querySelector("#delete").addEventListener("click", () => deleteUser(cover.id))
     
-
         tableBody.appendChild(elem);
 
     });
@@ -119,9 +118,9 @@ async function saveCover(id) {
 
 async function deleteUser(id) {
     // get user
-    const user = users.filter((u) => u.id == id)[0];
+    const cover = covers.filter((cover) => cover.id == id)[0];
 
-    if (confirm("Are you sure you want to delete: " + user.username) == true) {
+    if (confirm("Are you sure you want to delete: " + cover.artistname) == true) {
         await fetch(url + "/" + id, {method: 'DELETE'});
         getUsers();
       } else {
@@ -130,41 +129,36 @@ async function deleteUser(id) {
 }
 
 
-async function createcover() {
+async function createcover(evt) {
+    evt.preventDefault();
+
     // get row
-    const form = document.getElementById("create-form");
+    const form = document.querySelector("#cover-form");
+    console.log(form);
 
-    // get values
-    let username = form.querySelector("#username-input").value
-    let password = form.querySelector("#password-input").value
+    console.log(document.querySelector("#artist-name-input"));
+    // .value to get the value from form, or else we get the elementet. 
+    let artistName = document.querySelector("#artist-name-input").value
+    let singleName = document.querySelector("#single-name-input").value
 
-    // check for dublicate username 
-    let dublicateUsername = false;
-    users.forEach((u) => { if (u.username === username) dublicateUsername = true });
 
-    // set invalid message
-    if (dublicateUsername) {
-        form.querySelector("#username-input").classList.add("is-invalid");
-        return
-    } else {
-        form.querySelector("#username-input").classList.remove("is-invalid");
-    }
-
-    // makes data object for transfer
+    // we create a javascript object, ads input from form (look above)
     const createPackage = {
-        "username": username,
-        "password": password
+        "artistName": artistName,
+        "singleName": singleName
     }
 
-    await fetch(url, {method: 'POST', 
+    //we fetch, its has two parameters; url and promise response. 
+    //promise response; vi parser til JSon for at vores backend kan forstå det- header: setting: det den får
+    //skal den forstå som json. backsend bruger restserver - som sender og modtager JSON
+
+    await fetch(url, {
+        method: 'POST', 
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(createPackage)});
 
-    alert(username + ' was created', 'success')
+    alert('artistName' + ' was created', 'success')
 
-    getUsers();
+    getCovers();
 
-    // set values to ""
-    form.querySelector("#username-input").value = "";
-    form.querySelector("#password-input").value = "";
 }

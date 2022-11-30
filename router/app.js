@@ -4,11 +4,12 @@ import { renderTemplate, loadHtml } from "../js/utils.js"
 
 /**
  * Used to hold cached versions of used HTML templates.
+ * Map object holds a key/value pair
  */
 var htmlTemplateCache = new Map()
 
 
-// import js files for pages
+// import js methods from js pages
 // login
 import {init} from "../pages/login/login.js"
 
@@ -24,11 +25,11 @@ const templateAbout = await loadHtml("./pages/about/about.html");
 const templateLogin = await loadHtml("./pages/login/login.html");
 const templateUsers = await loadHtml("./pages/user/users.html");
 const templateWork = await loadHtml("./pages/work/work.html");
-//work
 
 
 /** 
  * Route constants.
+ * 
  */
 const ROUTE_HOME = '/'
 const ROUTE_ABOUT = '/about'
@@ -38,12 +39,16 @@ const ROUTE_LOGOUT = "/logout"
 const ROUTE_WORK = "/work"
 
 /**
- * setting the default action 
+ * setting the default action
+ * Route class: It is the piece of software in charge to organize
+ *  the states of the application, switching between different views.
+ * setDefaultFunktion; if theres no route, we execute pagenotfoundmethod. 
  */
 Route.setDefaultFunction(pageNotFound);
 
 /**
  * Creating the routes for the app
+ * route parameter; takes path and function. 
  */
 new Route(ROUTE_HOME, home)
    
@@ -58,18 +63,6 @@ new Route(ROUTE_USERS, users)
     .setFailFunction(fail);
 
 new Route(ROUTE_WORK, work)
-
-
-/**
- * Clones an embedded HTML template, from the HTML file, via an id.
- */
-function cloneHtmlTemplate(id) {
-    let div = document.createElement('div');
-    const template = document.querySelector(`#${id}`);
-    const clone = template.content.cloneNode(true);
-    div.appendChild(clone)
-    return div
-}
 
 /**
  * Home route action.
@@ -123,10 +116,11 @@ function pre() {
 
 function work(){
     renderTemplate(templateWork);
+    coversInit();
 }
 
 /**
- * Default action.
+ * Default action - this method that is called if the router is empty. 
  */
  function pageNotFound() {
     document.querySelector('#view').innerHTML = ('page-not-found-404'); 
@@ -134,6 +128,6 @@ function work(){
 
 
 /**
- * starting the router
+ * we call this method defined in router.js
  */
 start();

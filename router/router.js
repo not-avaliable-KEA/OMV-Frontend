@@ -113,7 +113,6 @@ function router() {
     let args = [];
     if(route.hasParams) {
       args = url.match(route.path).splice(1);
-      console.log(args);
     }
 
     if (typeof route.preFunction === 'function') {

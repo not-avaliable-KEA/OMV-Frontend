@@ -15,6 +15,9 @@ import {init} from "../pages/login/login.js"
 // user admin
 import userInit from "../pages/user/users.js"
 
+// main 
+import {homeInit} from "../pages/home/home.js"
+
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
@@ -68,6 +71,7 @@ function cloneHtmlTemplate(id) {
 function home() {
     //document.querySelector('#view').appendChild(cloneHtmlTemplate('template-frontpage')); 
     renderTemplate(templateHome);
+    homeInit();
 }
 
 /**

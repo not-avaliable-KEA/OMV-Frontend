@@ -17,14 +17,12 @@ function elementsAddEventListener() {
         //on mouse over event - does something whenever you hover over the element
         //in this case, it sets the "isHovering" boolean to true when you hover over an element
         image.addEventListener('mouseover', (event) => {
-            console.log(isHovering)
             isHovering = true;
         })
 
         //on mouse leave event - does something whenever your mouse leaves the element
         //in this case, it sets the "isHovering" boolean to false when you stop hovering over an element
         image.addEventListener('mouseleave', (event) => {
-            console.log(isHovering)
             isHovering = false;
         })
     });
@@ -68,7 +66,6 @@ function elementsAddEventListener() {
 
     //initial function that's fired to start the script up
     export function homeInit(){
-        console.log("init")
         elementsAddEventListener()
         showSlides();
     }

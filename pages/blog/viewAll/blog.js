@@ -26,9 +26,9 @@ posts.innerHTML = '';
         let postTemplate = document.createElement("div");
         postTemplate.id = "blogpost-" + post.id;
 
-        let text;
-        if (post.text.length > 400) {
-            text = post.text.substring(0, 400) + "..."
+        let text = post.text;
+        if (text.length > 400) {
+            text = text.substring(0, 400) + "..."
         }
 
         postTemplate.innerHTML = `<div class="card mb-3">

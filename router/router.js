@@ -8,6 +8,7 @@ const REGEX_HEAD = "^";
 const REGEX_TAIL = "\/?$";
 
 const PARAM_PATTERN = /{[^\/]+}/g;
+const USER_PARAM_PATTERN = /\(\[[^\/]+\)/g; // if the user inputs a regex expression, with a group
 const PARAM_GET_PATTERN = "([^/\\s]+)";
 
 /**
@@ -35,7 +36,7 @@ export class Route {
     path = path.replace("/", "\\/");
     
     // check if the path contains params
-    if (PARAM_PATTERN.test(path)) {
+    if (PARAM_PATTERN.test(path) || USER_PARAM_PATTERN.test(path)) {
       this.hasParams = true;
 
       // replace params with the pattern to get the params in regex
@@ -112,6 +113,7 @@ function router() {
     let args = [];
     if(route.hasParams) {
       args = url.match(route.path).splice(1);
+      console.log(args);
     }
 
     if (typeof route.preFunction === 'function') {

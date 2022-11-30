@@ -18,6 +18,11 @@ posts.innerHTML = '';
         let postTemplate = document.createElement("div");
         postTemplate.id = "blogpost-" + post.id;
 
+        let text;
+        if (post.text.length > 400) {
+            text = post.text.substring(0, 400) + "..."
+        }
+
         postTemplate.innerHTML = `<div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
@@ -26,7 +31,7 @@ posts.innerHTML = '';
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 id="title" class="card-title">${post.title}</h5>
-                    <p id="text" class="card-text">${post.text}</p>
+                    <p id="text" class="card-text">${text}</p>
                     <p id="CreateDate" class="card-text"><small class="text-muted">Post Created: ${post.createdDate}</small></p>
                     <button id="read-more" class="btn btn-primary">Læs mere</button>
                     <button id="edit" class="btn btn-info" hidden>Edit</button>

@@ -36,10 +36,33 @@ posts.innerHTML = '';
         </div>
         </div>`
 
+        // set link to read more
         postTemplate.querySelector("#read-more").addEventListener("click", () => document.location = "#/blog/" + post.id);
 
-        posts.appendChild(postTemplate);
+        // if logged in
+        if ((sessionStorage.getItem("username") != null && sessionStorage.getItem("username") !== "")
+            && (sessionStorage.getItem("userId") > 0 && sessionStorage.getItem("userId") != null)) {
+                // set link to edit and remove hidden
+                postTemplate.querySelector("#edit").hidden = null;
+                postTemplate.querySelector("#edit").addEventListener("click", () => document.location = "#/blog/" + post.id + "/edit");
+                // set link to delete and remove hidden
+                postTemplate.querySelector("#delete").hidden = null;
+                postTemplate.querySelector("#delete").addEventListener("click", () => deletePost(post.id));
+            }
 
+        posts.appendChild(postTemplate);
     });
 
+}
+
+async function deletePost(id) {
+        // get user
+        const post = blogPosts.filter((p) => p.id == id)[0];
+    
+        if (confirm("Are you sure you want to delete: " + post.title) == true) {
+            await fetch(url + "/" + id, {method: 'DELETE'});
+            initBlog();
+          } else {
+            console.log("delete canceled");
+          }
 }

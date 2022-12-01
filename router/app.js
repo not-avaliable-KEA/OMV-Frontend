@@ -12,6 +12,7 @@ import userInit from "../pages/user/users.js"
 
 // blog
 import initBlog from "../pages/blog/viewAll/blog.js"
+import initBlogPost from "../pages/blog/viewSingle/blogPost.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
 
 // loading the pages
@@ -20,6 +21,7 @@ const templateAbout = await loadHtml("./pages/about/about.html");
 const templateLogin = await loadHtml("./pages/login/login.html");
 const templateUsers = await loadHtml("./pages/user/users.html");
 const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
+const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html")
 const templateCreatBlog = await loadHtml("./pages/blog/create/createBlog.html");
 
 /** 
@@ -31,6 +33,7 @@ const ROUTE_LOGIN = "/login"
 const ROUTE_USERS = "/users"
 const ROUTE_LOGOUT = "/logout"
 const ROUTE_BLOG = "/blog"
+const ROUTE_BLOG_POST = "/blog/{id}"
 const ROUTE_CREATE_BLOG = "/create-blog"
 const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
 
@@ -59,6 +62,8 @@ new Route(ROUTE_BLOG, blog);
 new Route(ROUTE_CREATE_BLOG, createBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
+
+new Route (ROUTE_BLOG_POST, blogPost)
 
 new Route(ROUTE_EDIT_BLOG, editBlog)
     .setPreFunction(pre)
@@ -111,8 +116,14 @@ function blog() {
     initBlog();
 }
 
+function blogPost(id){
+    renderTemplate(templateBlogPost)
+    initBlogPost(id);
+}
+
 function createBlog() {
     renderTemplate(templateCreatBlog);
+    console.log("create blog test")
     initCreateBlog();
 }
 

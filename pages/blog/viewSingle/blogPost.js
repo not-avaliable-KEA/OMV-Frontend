@@ -64,9 +64,11 @@ function displayPost(){
     post.appendChild(postText)
     post.appendChild(postImage)
 
+    //insert the element into the page
+    let templateDiv = document.getElementById("blogPost")
+    templateDiv.appendChild(post)
 
-
-    console.log(post)
+    //replace
 }   
 
 export default function initBlogPost() {

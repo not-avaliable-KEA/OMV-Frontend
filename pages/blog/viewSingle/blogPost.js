@@ -19,6 +19,12 @@ async function getPostInfo(){
 }
 
 function displayPost(){
+
+    //Grab the div from the HTML Document we're gonna insert into later
+    let templateDiv = document.getElementById("blogPost")
+    templateDiv.innerHTML = ""
+
+
     //Grab all the data from the JSON
     let text = postData.text;
     let title = postData.title;
@@ -65,7 +71,6 @@ function displayPost(){
     post.appendChild(postImage)
 
     //insert the element into the page
-    let templateDiv = document.getElementById("blogPost")
     templateDiv.appendChild(post)
 
     //replace

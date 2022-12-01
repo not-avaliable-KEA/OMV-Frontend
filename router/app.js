@@ -14,6 +14,7 @@ import userInit from "../pages/user/users.js"
 import initBlog from "../pages/blog/viewAll/blog.js"
 import initBlogPost from "../pages/blog/viewSingle/blogPost.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
+import {homeInit} from "../pages/home/home.js"
 
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
@@ -86,6 +87,7 @@ function cloneHtmlTemplate(id) {
 function home() {
     //document.querySelector('#view').appendChild(cloneHtmlTemplate('template-frontpage')); 
     renderTemplate(templateHome);
+    homeInit();
 }
 
 /**

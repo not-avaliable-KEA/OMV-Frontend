@@ -33,22 +33,19 @@ function displayCovers() {
         let releaseDate = new Date(cover.releaseDate);
         let options = {year: 'numeric', month: 'long', day: 'numeric'}
 
-        
-
         elem.innerHTML = (`
-        <th scope="row">${cover.id}</th>
-        <td><img src="${cover.image}"></td>
-        <td>${cover.artistName}</td>
-        <td>${cover.singleName}</td>
-        <td>${releaseDate.toLocaleDateString(undefined, options)}</td>
-        <td>
+        <td class="col-2"><img src="${cover.image}" style="object-fit:cover; height: 15vh;"></td>
+        <td class="col-2">${cover.artistName}</td>
+        <td class="col-2">${cover.singleName}</td>
+        <td class="col-2">${releaseDate.toLocaleDateString(undefined, options)}</td>
+        <td class="col-2">
             <button id="edit" class="btn btn-info" >edit</button> 
             <button id="delete" class="btn btn-danger" >delete</button>
         </td>`)
 
 
         elem.querySelector("#edit").addEventListener("click", () => edit(cover.id))
-        elem.querySelector("#delete").addEventListener("click", () => deleteUser(cover.id))
+        elem.querySelector("#delete").addEventListener("click", () => deleteCover(cover.id))
     
         tableBody.appendChild(elem);
 
@@ -67,20 +64,13 @@ function edit(id) {
      *  then we pull out index 0 - since we dont expect there to be any other items in the list.
     */
 
-    const cover = covers.filter((cover) => cover.id == id)     [0];
-
-
+    const cover = covers.filter((cover) => cover.id == id)[0];
 
     // set info
     document.querySelector("#artist-name-input").value = cover.artistName;
     document.querySelector("#single-name-input").value = cover.singleName;
     document.querySelector("#release-date-input").value = cover.releaseDate;
 
-    const uddateform = document.querySelector('#row')
-
-    
-    
-    tableBody.appendChild(elem);
 
     
 }
@@ -116,7 +106,7 @@ async function updateCover(id) {
 }
 
 
-async function deletecover(id) {
+async function deleteCover(id) {
     // get user
     const cover = covers.filter((cover) => cover.id == id)[0];
 

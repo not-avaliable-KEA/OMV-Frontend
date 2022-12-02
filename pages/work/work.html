@@ -1,13 +1,25 @@
 <div class="template">
-    <!--<template>-->
-        <div class="container">
-            <table class="table" id="cover-body"></table>
-        </div>
-    <!--</template>-->
+    <!--<table>-->
+        <div id ="table" class="container">
+            <table class="table table-striped">
+              <thead>
+                <tr class="table-dark">
+                  <th scope="col" class="col-3">Image</th>
+                  <th scope="col" class="col-1">Artist Name</th>
+                  <th scope="col" class="col-2">Single Name</th>
+                  <th scope="col" class="col-2">Release Date</th>
+                  <th scope="col" class="col-2"></th>
+                </tr>
+              </thead>
+              <tbody id="cover-body">
+              </tbody>
+            </table>
+          </div>
+    <!--<table>-->
 
     <div class="col card rounded m-2 p-2">
         <div class="card-body">
-            <h5 class="card-title">Upload cover</h5>
+            <h5 class="card-title" id="upload-heading">Upload cover</h5>
             <div><br></div>
             <form id="cover" class="form" id="cover-form">
                 <div class="row">

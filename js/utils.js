@@ -26,3 +26,24 @@ export async function loadHtml(page) {
 export async function fetching() {
     !{notImplemented};
 }
+
+/**
+ * returns a base64 string with the file info
+ * @param {String} inputField input for a query selector
+ * @param {function} onFileLoad which function should fire when the file is loaded?
+ * @return {String} 
+ */
+export async function fileLoad(inputField, onFileLoad) {
+  const file = document.querySelector(inputField).files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener("load", () => {
+    // convert image file to base64 string
+    onFileLoad(reader.result);
+  }, false);
+  
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
+

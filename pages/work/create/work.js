@@ -1,4 +1,4 @@
-import { fileLoad } from "../../js/utils.js"
+import { fileLoad } from "../../../js/utils.js"
 
 const url = "http://localhost:8080/api/v1/work"
 

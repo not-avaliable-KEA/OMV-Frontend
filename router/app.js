@@ -10,7 +10,7 @@ import {init} from "../pages/login/login.js"
 import userInit from "../pages/user/users.js"
 
 //TODO: work js - 
-import coversInit from "../pages/work/work.js"
+import coversInit from "../pages/work/create/work.js"
 import workInit from "../pages/work/viewAll/viewWork.js"
 
 
@@ -145,6 +145,10 @@ function work(){
     workInit();
 }
 
+function createWork(){
+    renderTemplate(templateCreateWork);
+    coversInit();
+}
 /**
  * Fail action.
  */
@@ -163,10 +167,7 @@ function pre() {
     return true;
 }
 
-function createWork(){
-    renderTemplate(templateCreateWork);
-    coversInit();
-}
+
 
 /**
  * Default action - this method that is called if the router is empty. 

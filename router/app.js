@@ -2,13 +2,6 @@
 import {Route, start} from "../router/router.js"
 import { renderTemplate, loadHtml } from "../js/utils.js"
 
-/**
- * Used to hold cached versions of used HTML templates.
- * Map object holds a key/value pair
- */
-var htmlTemplateCache = new Map()
-
-
 // import js methods from js pages
 // login
 import {init} from "../pages/login/login.js"
@@ -18,6 +11,10 @@ import userInit from "../pages/user/users.js"
 
 //TODO: work js - 
 import coversInit from "../pages/work/work.js"
+// blog
+import initBlog from "../pages/blog/viewAll/blog.js"
+import initCreateBlog from "../pages/blog/create/createBlog.js"
+import {homeInit} from "../pages/home/home.js"
 
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
@@ -26,6 +23,8 @@ const templateLogin = await loadHtml("./pages/login/login.html");
 const templateUsers = await loadHtml("./pages/user/users.html");
 const templateWork = await loadHtml("./pages/work/work.html");
 
+const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
+const templateCreatBlog = await loadHtml("./pages/blog/create/createBlog.html");
 
 /** 
  * Route constants.
@@ -37,6 +36,9 @@ const ROUTE_LOGIN = "/login"
 const ROUTE_USERS = "/users"
 const ROUTE_LOGOUT = "/logout"
 const ROUTE_WORK = "/work"
+const ROUTE_BLOG = "/blog"
+const ROUTE_CREATE_BLOG = "/create-blog"
+const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
 
 /**
  * setting the default action
@@ -63,6 +65,26 @@ new Route(ROUTE_USERS, users)
     .setFailFunction(fail);
 
 new Route(ROUTE_WORK, work)
+new Route(ROUTE_BLOG, blog);
+
+new Route(ROUTE_CREATE_BLOG, createBlog)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
+
+new Route(ROUTE_EDIT_BLOG, editBlog)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
+
+/**
+ * Clones an embedded HTML template, from the HTML file, via an id.
+ */
+function cloneHtmlTemplate(id) {
+    let div = document.createElement('div');
+    const template = document.querySelector(`#${id}`);
+    const clone = template.content.cloneNode(true);
+    div.appendChild(clone)
+    return div
+}
 
 /**
  * Home route action.
@@ -70,6 +92,7 @@ new Route(ROUTE_WORK, work)
 function home() {
     //document.querySelector('#view').appendChild(cloneHtmlTemplate('template-frontpage')); 
     renderTemplate(templateHome);
+    homeInit();
 }
 
 /**
@@ -95,6 +118,21 @@ function users() {
     userInit();
 }
 
+function blog() {
+    renderTemplate(templateBlog);
+    initBlog();
+}
+
+function createBlog() {
+    renderTemplate(templateCreatBlog);
+    initCreateBlog();
+}
+
+function editBlog(id) {
+    renderTemplate(templateCreatBlog);
+    initCreateBlog(id);
+}
+
 /**
  * Fail action.
  */
@@ -106,7 +144,6 @@ function fail() {
  * Pre action.
  */
 function pre() {
-
     if (sessionStorage.getItem("username") == "" 
         || sessionStorage.getItem("userId") <= 0) 
         return false;

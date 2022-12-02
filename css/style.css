@@ -9,14 +9,12 @@ body {
   font-family: "Oswald", sans-serif;
 }
 
+/* Sidebar */
 #sidebar {
   background-color: rgb(175, 194, 191);
 }
 
-#main {
-  min-height: 100vh;
-  font-size: 3vh;
-}
+
 
 #view {
   min-height: 93vh;
@@ -42,8 +40,13 @@ body {
   color: black;
 }
 
+/* Main section*/
+#main {
+  min-height: 100vh;
+  font-size: 3vh;
+}
+
 #about-me-teaser-border {
-  border: 2px solid black;
   border-radius: 20px;
   padding: 10px;
 }
@@ -60,6 +63,28 @@ body {
   margin: 10px 0;
 }
 
+.container-slide{
+  display: none;
+
+}
+
+/*
+.fade {
+  animation-name: fade;
+  animation-duration: 3s;
+}
+
+
+@keyframes fade {
+  from {opacity: .9}
+  to {opacity: 1}
+}
+*/
+
+.active {
+  display: flex;
+}
+
 .image {
   display: block;
   width: 100%;
@@ -67,13 +92,8 @@ body {
   transition: transform 0.2s;
   border-radius: 20px;
 }
-.image1 {
-  display: block;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.2s;
-  border-radius: 20px;
-}
+
+
 
 .image-sidebar {
   display: block;
@@ -81,20 +101,53 @@ body {
   height: 100%;
 }
 
-.image:hover {
-  transform: scale(1.05);
-}
-.image1:hover {
-  transform: scale(1.05);
+.image-container {
+  position: relative;
+  text-align: center;
+  transition: 0.5s ease;
+  color: rgba(0, 0, 0, 0);
 }
 
+.image-container:hover {
+  transform: scale(1.05);
+  color: black;
+}
+
+.overlay:hover {
+  border-radius: 20px;
+  background-color: white;
+  opacity: .6;
+}
+
+.text-overlay {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 100%;
+  opacity: 1;
+}
+
+
+
+
+/*
+.overlay {
+  display: block;
+  width: 100%;
+  height: 0%;
+  transition: transform 0.2s;
+  border-radius: 20px;
+  transition: 0.5s ease;
+  opacity: 0;
+}
 
 .text1 {
   color: white;
   font-size: 28px;
   position: absolute;
   top: 80%;
-  left: 16.5%;
+  left: 30%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -124,20 +177,10 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
 }
+*/
 
-.image-container:hover .overlay {
-  opacity: 1;
-}
 
-.overlay {
-  display: block;
-  width: 100%;
-  height: 0%;
-  transition: transform 0.2s;
-  border-radius: 20px;
-  transition: 0.5s ease;
-  opacity: 0;
-}
+/* Footer section */
 
 footer {
   display: block;

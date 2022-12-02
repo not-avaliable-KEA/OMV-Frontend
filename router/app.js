@@ -85,7 +85,6 @@ function cloneHtmlTemplate(id) {
  * Home route action.
  */
 function home() {
-    //document.querySelector('#view').appendChild(cloneHtmlTemplate('template-frontpage')); 
     renderTemplate(templateHome);
     homeInit();
 }
@@ -94,7 +93,6 @@ function home() {
  * About route action.
  */
 function about() {
-    /*document.querySelector('#view').appentChild(cloneHtmlTemplate('template-about')); */
     renderTemplate(templateAbout);
 }
 
@@ -159,6 +157,8 @@ function pre() {
     document.querySelector('#view').innerHTML = ('page-not-found-404'); 
 }
 
+// clears the session, when loading the page, to fix seeing buttons before logged in
+sessionStorage.clear();
 
 /**
  * starting the router

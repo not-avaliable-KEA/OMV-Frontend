@@ -51,6 +51,7 @@ async function createBlog(event) {
         console.log(response);
         throw new Error("Could not send the info to the database");
     }
+    fileAsBase64 = "";
 }
 
 // function to helo edit to set values from the blog, based on id

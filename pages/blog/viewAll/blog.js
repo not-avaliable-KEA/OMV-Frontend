@@ -73,7 +73,7 @@ async function deletePost(id) {
         const post = blogPosts.filter((p) => p.id == id)[0];
     
         if (confirm("Are you sure you want to delete: " + post.title) == true) {
-            await fetch(url + "/" + id, {method: 'DELETE'});
+            await fetch(url + "/" + id, {method: 'DELETE', credentials:'include'});
             initBlog();
           } else {
             console.log("delete canceled");

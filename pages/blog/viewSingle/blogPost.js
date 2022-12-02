@@ -5,13 +5,15 @@ let postData;
 
 async function getPostInfo(){
 
-    //get the url from the browser search bar
-    let siteUrl = document.location.href;
+    //get the adress from the browser search bar
+    let siteAdress = document.location.href;
+
     //split it into array
-    let urlSplit = siteUrl.split("/")
+    let adressSplit = siteAdress.split("/")
 
     //get blog post id from the array and fetch post from the backend
-    let postResponse = await fetch(url + "/" + urlSplit[urlSplit.length-1])
+    let postResponse = await fetch(url + "/" + adressSplit[adressSplit.length-1])
+    
     //turn it into JSon data
     postData = await postResponse.json()
 
@@ -25,13 +27,11 @@ function displayPost(){
     templateDiv.innerHTML = ""
 
 
-
     //Grab all the data from the JSON
     let text = postData.text;
     let title = postData.title;
     let picture = postData.picture;
     let date = postData.createdDate;
-
 
 
     //set the header
@@ -69,7 +69,7 @@ function displayPost(){
     let post = document.createElement("div")
     post.className = "row"
 
-    //create the header div
+    //create the div to hold the header
     let postHeader = document.createElement("div")
     postHeader.className = "col-12"
     postHeader.className = "pt-3"
@@ -94,7 +94,7 @@ function displayPost(){
      postText.appendChild(blogText)
 
     //append all the elements to the main post element
-    //This decides the placement of hte elements
+    //The order decides the placement of elements
     post.appendChild(postHeader)
     post.appendChild(postDate)
     post.appendChild(postImage)
@@ -108,7 +108,6 @@ function displayPost(){
 
 function displayButtons(editButton, deleteButton){
 
-    console.log("Testy testy")
 
     if ((sessionStorage.getItem("username") != null && sessionStorage.getItem("username") !== "")
     && (sessionStorage.getItem("userId") > 0 && sessionStorage.getItem("userId") != null)) {
@@ -119,8 +118,18 @@ function displayButtons(editButton, deleteButton){
         deleteButton.style.visibility = "visible";
         deleteButton.addEventListener("click", () => deletePost(postData.id));
         
-        console.log("testy")
     }
+}
+
+async function deletePost(id) {
+    // get user
+
+    if (confirm("Are you sure you want to delete: " + postData.title) == true) {
+        await fetch(url + "/" + id, {method: 'DELETE', credentials:'include'});
+        window.location = "#/blog"
+      } else {
+        console.log("delete canceled");
+      }
 }
 
 export default function initBlogPost() {

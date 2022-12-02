@@ -10,7 +10,10 @@ import {init} from "../pages/login/login.js"
 import userInit from "../pages/user/users.js"
 
 //TODO: work js - 
-import coversInit from "../pages/work/work.js"
+import coversInit from "../pages/work/create/work.js"
+import workInit from "../pages/work/viewAll/viewWork.js"
+
+
 // blog
 import initBlog from "../pages/blog/viewAll/blog.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
@@ -21,10 +24,10 @@ const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
 const templateLogin = await loadHtml("./pages/login/login.html");
 const templateUsers = await loadHtml("./pages/user/users.html");
-const templateWork = await loadHtml("./pages/work/work.html");
-
+const templateWork = await loadHtml("./pages/work/viewAll/viewWork.html");
+const templateCreateWork = await loadHtml("./pages/work/create/work.html");
 const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
-const templateCreatBlog = await loadHtml("./pages/blog/create/createBlog.html");
+const templateCreateBlog = await loadHtml("./pages/blog/create/createBlog.html");
 
 /** 
  * Route constants.
@@ -36,6 +39,7 @@ const ROUTE_LOGIN = "/login"
 const ROUTE_USERS = "/users"
 const ROUTE_LOGOUT = "/logout"
 const ROUTE_WORK = "/work"
+const ROUTE_CREATE_WORK = "/create-work"
 const ROUTE_BLOG = "/blog"
 const ROUTE_CREATE_BLOG = "/create-blog"
 const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
@@ -64,7 +68,12 @@ new Route(ROUTE_USERS, users)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
-new Route(ROUTE_WORK, work)
+new Route(ROUTE_WORK, work);  
+
+new Route(ROUTE_CREATE_WORK, createWork)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
+    
 new Route(ROUTE_BLOG, blog);
 
 new Route(ROUTE_CREATE_BLOG, createBlog)
@@ -75,6 +84,7 @@ new Route(ROUTE_EDIT_BLOG, editBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
+  
 /**
  * Clones an embedded HTML template, from the HTML file, via an id.
  */
@@ -124,15 +134,23 @@ function blog() {
 }
 
 function createBlog() {
-    renderTemplate(templateCreatBlog);
+    renderTemplate(templateCreateBlog);
     initCreateBlog();
 }
 
 function editBlog(id) {
-    renderTemplate(templateCreatBlog);
+    renderTemplate(templateCreateBlog);
     initCreateBlog(id);
 }
+function work(){
+    renderTemplate(templateWork);
+    workInit();
+}
 
+function createWork(){
+    renderTemplate(templateCreateWork);
+    coversInit();
+}
 /**
  * Fail action.
  */
@@ -151,10 +169,7 @@ function pre() {
     return true;
 }
 
-function work(){
-    renderTemplate(templateWork);
-    coversInit();
-}
+
 
 /**
  * Default action - this method that is called if the router is empty. 

@@ -71,7 +71,9 @@ new Route(ROUTE_USERS, users)
 new Route(ROUTE_WORK, work);  
 
 new Route(ROUTE_CREATE_WORK, createWork)
-
+    .setPreFunction(pre)
+    .setFailFunction(fail);
+    
 new Route(ROUTE_BLOG, blog);
 
 new Route(ROUTE_CREATE_BLOG, createBlog)

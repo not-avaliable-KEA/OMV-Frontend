@@ -113,7 +113,7 @@ function about() {
 
 function login() {
     renderTemplate(templateLogin);
-    workViewInit();
+    init();
 }
 
 function logout() {

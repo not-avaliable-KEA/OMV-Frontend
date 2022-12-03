@@ -10,9 +10,7 @@ export default async function coversInit() {
     
     getCovers();
 
-    let submitButton = document.getElementById("submit");
-    submitButton.replaceWith(submitButton.cloneNode(true));
-    submitButton.addEventListener("click", (event) => createcover(event));
+    reset();
 }
 
 /**
@@ -53,7 +51,6 @@ function displayCovers() {
         elem.querySelector("#delete").addEventListener("click", () => deleteCover(cover.id))
     
         tableBody.appendChild(elem);
-
     });
 }
 
@@ -121,6 +118,8 @@ async function updateCover(event, id) {
 
     imageFile = "";
     getCovers();
+
+    reset();
 }
 
 
@@ -137,6 +136,8 @@ async function deleteCover(id) {
       } else {
         console.log("delete canceled");
       }
+
+      reset();
 }
 
 
@@ -172,4 +173,22 @@ async function createcover(evt) {
     imageFile = "";
     getCovers();
 
+}
+
+function reset() {
+    imageFile = "";
+
+     // set info
+     document.querySelector("#artist-name-input").value = "";
+     document.querySelector("#single-name-input").value = "";
+     document.querySelector("#release-date-input").value = "";
+ 
+     // set title and button text
+     document.querySelector("#upload-heading").innerText = "Upload cover"
+     document.querySelector("#submit").innerText = "Create"
+ 
+     // set the correct eventlistener
+     let submitButton = document.getElementById("submit");
+     submitButton.replaceWith(submitButton.cloneNode(true));
+     document.querySelector("#submit").addEventListener("click", (event) => createcover(event));
 }

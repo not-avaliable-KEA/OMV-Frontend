@@ -37,7 +37,7 @@ function displayCovers() {
         let options = {year: 'numeric', month: 'long', day: 'numeric'}
 
         elem.innerHTML = (`
-        <td class="col-2"><img src="${cover.image}" style="object-fit:cover; height: 15vh;"></td>
+        <td class="col-2"><img class="image rounded-0" src="${cover.image}"></td>
         <td class="col-2">${cover.artistName}</td>
         <td class="col-2">${cover.singleName}</td>
         <td class="col-2">${releaseDate.toLocaleDateString(undefined, options)}</td>

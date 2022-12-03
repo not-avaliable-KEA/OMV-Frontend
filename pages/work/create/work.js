@@ -173,6 +173,7 @@ async function createcover(evt) {
     imageFile = "";
     getCovers();
 
+    reset();
 }
 
 function reset() {
@@ -182,6 +183,7 @@ function reset() {
      document.querySelector("#artist-name-input").value = "";
      document.querySelector("#single-name-input").value = "";
      document.querySelector("#release-date-input").value = "";
+     document.querySelector("#cover-image").value = "";
  
      // set title and button text
      document.querySelector("#upload-heading").innerText = "Upload cover"

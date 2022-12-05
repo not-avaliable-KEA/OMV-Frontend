@@ -23,6 +23,7 @@ export class Route {
 
   /**
    * Constructor for Route, takes a path as a string, and the function to be executed, when the path is hit
+   * we set path
    */
 
   /**
@@ -91,6 +92,7 @@ let defaultFunction = "";
 
 /**
  * Gets a route.
+ * 
  */
 function resolveRoute(path) {
   for (const route of routes) {

@@ -29,7 +29,7 @@ const templateWork = await loadHtml("./pages/work/viewAll/viewWork.html");
 const templateCreateWork = await loadHtml("./pages/work/create/work.html");
 const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
 const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html")
-const templateCreatBlog = await loadHtml("./pages/blog/create/createBlog.html");
+const templateCreateBlog = await loadHtml("./pages/blog/create/createBlog.html");
 
 
 /** 
@@ -152,6 +152,7 @@ function editBlog(id) {
     renderTemplate(templateCreateBlog);
     initCreateBlog(id);
 }
+
 function work(){
     renderTemplate(templateWork);
     workInit();

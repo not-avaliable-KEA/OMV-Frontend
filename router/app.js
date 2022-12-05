@@ -20,6 +20,9 @@ import initBlogPost from "../pages/blog/viewSingle/blogPost.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
 import {homeInit} from "../pages/home/home.js"
 
+// live video
+import liveVideoViewOneInit from "../pages/blog/LiveVideo/viewOne.js"
+
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
@@ -30,6 +33,7 @@ const templateCreateWork = await loadHtml("./pages/work/create/work.html");
 const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
 const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html")
 const templateCreateBlog = await loadHtml("./pages/blog/create/createBlog.html");
+const templateLiveVideoViewOne = await loadHtml("./pages/blog/LiveVideo/viewOne.html")
 
 
 /** 
@@ -46,7 +50,8 @@ const ROUTE_CREATE_WORK = "/create-work"
 const ROUTE_BLOG = "/blog"
 const ROUTE_BLOG_POST = "/blog/{id}"
 const ROUTE_CREATE_BLOG = "/create-blog"
-const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
+const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // standard parameter
+const ROUTE_LIVE_VIDEO_VIEW_ONE = "/blog/video/[0-9]+"
 
 /**
  * setting the default action
@@ -89,6 +94,8 @@ new Route (ROUTE_BLOG_POST, blogPost)
 new Route(ROUTE_EDIT_BLOG, editBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
+
+new Route(ROUTE_LIVE_VIDEO_VIEW_ONE, liveVideoViewOne)
 
   
 /**
@@ -162,6 +169,13 @@ function createWork(){
     renderTemplate(templateCreateWork);
     coversInit();
 }
+
+function liveVideoViewOne(id) {
+    renderTemplate(templateLiveVideoViewOne);
+    liveVideoViewOneInit(1);
+}
+
+
 /**
  * Fail action.
  */

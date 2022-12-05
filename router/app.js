@@ -20,6 +20,9 @@ import initBlogPost from "../pages/blog/viewSingle/blogPost.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
 import {homeInit} from "../pages/home/home.js"
 
+// TODO: contact imports - requires methods to be implemented
+
+
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
@@ -30,6 +33,7 @@ const templateCreateWork = await loadHtml("./pages/work/create/work.html");
 const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
 const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html")
 const templateCreatBlog = await loadHtml("./pages/blog/create/createBlog.html");
+const templateContact = await  loadHtml("./pages/contact/contact.html");
 
 
 /** 
@@ -47,6 +51,7 @@ const ROUTE_BLOG = "/blog"
 const ROUTE_BLOG_POST = "/blog/{id}"
 const ROUTE_CREATE_BLOG = "/create-blog"
 const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
+const ROUTE_CONTACT = "/contact"
 
 /**
  * setting the default action
@@ -90,6 +95,7 @@ new Route(ROUTE_EDIT_BLOG, editBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
+new Route(ROUTE_CONTACT, contact);
   
 /**
  * Clones an embedded HTML template, from the HTML file, via an id.
@@ -160,6 +166,10 @@ function work(){
 function createWork(){
     renderTemplate(templateCreateWork);
     coversInit();
+}
+
+function contact(){
+    renderTemplate(templateContact);
 }
 /**
  * Fail action.

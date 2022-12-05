@@ -51,7 +51,7 @@ const ROUTE_BLOG = "/blog"
 const ROUTE_BLOG_POST = "/blog/{id}"
 const ROUTE_CREATE_BLOG = "/create-blog"
 const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // standard parameter
-const ROUTE_LIVE_VIDEO_VIEW_ONE = "/blog/video/[0-9]+"
+const ROUTE_LIVE_VIDEO_VIEW_ONE = "/blog/video/([0-9]+)" // regex pattern as parameter
 
 /**
  * setting the default action
@@ -171,7 +171,7 @@ function createWork(){
 
 function liveVideoViewOne(id) {
     renderTemplate(templateLiveVideoViewOne);
-    liveVideoViewOneInit(1);
+    liveVideoViewOneInit(id);
 }
 
 

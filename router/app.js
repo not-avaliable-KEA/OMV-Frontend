@@ -16,6 +16,7 @@ import workInit from "../pages/work/viewAll/viewWork.js"
 
 // blog
 import initBlog from "../pages/blog/viewAll/blog.js"
+import initBlogPost from "../pages/blog/viewSingle/blogPost.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
 import {homeInit} from "../pages/home/home.js"
 
@@ -27,7 +28,9 @@ const templateUsers = await loadHtml("./pages/user/users.html");
 const templateWork = await loadHtml("./pages/work/viewAll/viewWork.html");
 const templateCreateWork = await loadHtml("./pages/work/create/work.html");
 const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
-const templateCreateBlog = await loadHtml("./pages/blog/create/createBlog.html");
+const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html")
+const templateCreatBlog = await loadHtml("./pages/blog/create/createBlog.html");
+
 
 /** 
  * Route constants.
@@ -41,6 +44,7 @@ const ROUTE_LOGOUT = "/logout"
 const ROUTE_WORK = "/work"
 const ROUTE_CREATE_WORK = "/create-work"
 const ROUTE_BLOG = "/blog"
+const ROUTE_BLOG_POST = "/blog/{id}"
 const ROUTE_CREATE_BLOG = "/create-blog"
 const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
 
@@ -80,6 +84,8 @@ new Route(ROUTE_CREATE_BLOG, createBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
+new Route (ROUTE_BLOG_POST, blogPost)
+
 new Route(ROUTE_EDIT_BLOG, editBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
@@ -100,7 +106,6 @@ function cloneHtmlTemplate(id) {
  * Home route action.
  */
 function home() {
-    //document.querySelector('#view').appendChild(cloneHtmlTemplate('template-frontpage')); 
     renderTemplate(templateHome);
     homeInit();
 }
@@ -109,7 +114,6 @@ function home() {
  * About route action.
  */
 function about() {
-    /*document.querySelector('#view').appentChild(cloneHtmlTemplate('template-about')); */
     renderTemplate(templateAbout);
 }
 
@@ -133,8 +137,14 @@ function blog() {
     initBlog();
 }
 
+function blogPost(id){
+    renderTemplate(templateBlogPost)
+    initBlogPost(id);
+}
+
 function createBlog() {
-    renderTemplate(templateCreateBlog);
+    renderTemplate(templateCreatBlog);
+
     initCreateBlog();
 }
 
@@ -178,6 +188,8 @@ function pre() {
     document.querySelector('#view').innerHTML = ('page-not-found-404'); 
 }
 
+// clears the session, when loading the page, to fix seeing buttons before logged in
+sessionStorage.clear();
 
 /**
  * we call this method defined in router.js

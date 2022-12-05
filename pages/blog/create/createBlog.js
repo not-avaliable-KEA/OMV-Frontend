@@ -13,13 +13,17 @@ export default async function initCreateBlog(id) {
     } else {
         resetCreate();
     }
+    
+    let submitButton = document.getElementById("submit-button");
+
+    submitButton.replaceWith(submitButton.cloneNode(true));
 
     document.getElementById("submit-button").addEventListener("click", (event) => createBlog(event));
-    document.getElementById("picture").addEventListener("input", () => loadAndPreviewFile())
+    document.getElementById("picture").addEventListener("input", () => loadAndPreviewFile());
 }
 
 async function createBlog(event) {
-    event.preventDefault()
+    event.preventDefault();
 
     let data = {
         title:       document.getElementById("title").value, 
@@ -44,8 +48,10 @@ async function createBlog(event) {
 
         window.location = "#/blog"
     } else {
+        console.log(response);
         throw new Error("Could not send the info to the database");
     }
+    fileAsBase64 = "";
 }
 
 // function to helo edit to set values from the blog, based on id

@@ -31,9 +31,9 @@ let liveVideos = [
 
 export default async function initBlog() {
     // get blog posts
-    let response = await fetch(blogPostUrl)
+    let response = await fetch(blogPostUrl);
     blogPosts = Array.from(await response.json());
-    blogPosts.forEach((post) => post.type = "post")
+    blogPosts.forEach((post) => post.type = "post");
 
     // get live videos
     liveVideos.forEach((video) => {
@@ -47,18 +47,17 @@ export default async function initBlog() {
         let valA, valB;
 
         if (a.type === "video") {
-            valA = dateUTCParse(a.date)
+            valA = dateUTCParse(a.date);
         } else {
-            valA = dateUTCParse(a.createdDate)
+            valA = dateUTCParse(a.createdDate);
         }
         
         if (b.type === "video") {
-            valB = dateUTCParse(b.date)
+            valB = dateUTCParse(b.date);
         } else {
-            valB = dateUTCParse(b.createdDate)
+            valB = dateUTCParse(b.createdDate);
         }
 
-        console.log(valA + " - " + valB + " = " + (valA - valB));
         return  valB - valA
     });
 
@@ -91,9 +90,6 @@ function display() {
         }
 
     });
-
-
-    //displayBlogPosts();
 }
 
 function displayBlogPost(blogPost) {
@@ -122,7 +118,7 @@ function displayBlogPost(blogPost) {
                 </div>
             </div>
         </div>
-        </div>`
+        </div>`;
 
         // set link to read more
         postTemplate.querySelector("#read-more").addEventListener("click", () => document.location = "#/blog/" + blogPost.id);
@@ -148,7 +144,7 @@ function displayLiveVideo(video) {
 
     let text = video.intro;
     if (text.length > 400) {
-        text = text.substring(0, 400) + "..."
+        text = text.substring(0, 400) + "...";
     }
 
     
@@ -170,7 +166,7 @@ function displayLiveVideo(video) {
                 </div>
             </div>
         </div>
-    </div>`
+    </div>`;
 
     // set link to read more
     postTemplate.querySelector("#read-more").addEventListener("click", () => document.location = "#/blog/video/" + video.id);

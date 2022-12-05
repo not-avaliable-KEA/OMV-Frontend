@@ -9,10 +9,12 @@ let liveVideo = {
 }
 
 /**
- * 
  * @param {number} id 
  */
 export default function liveVideoViewOneInit(id) {
+    // fetch liveVideo
+
+    
     display();
 }
 

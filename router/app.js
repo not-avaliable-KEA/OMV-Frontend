@@ -150,8 +150,7 @@ function blogPost(id){
 }
 
 function createBlog() {
-    renderTemplate(templateCreatBlog);
-
+    renderTemplate(templateCreateBlog);
     initCreateBlog();
 }
 

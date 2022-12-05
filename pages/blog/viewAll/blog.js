@@ -10,9 +10,8 @@ export default async function initBlog() {
      // if logged in enable create button and set link
      if ((sessionStorage.getItem("username") != null && sessionStorage.getItem("username") !== "") && 
          (sessionStorage.getItem("userId")   != null && sessionStorage.getItem("userId") > 0)) {
-            let button = document.getElementById("create-button");
-            button.hidden = false;
-            button.addEventListener("click", () => window.location = "#/create-blog")
+            document.getElementById("create-blog-button").hidden = false;
+            document.getElementById("create-live-button").hidden = false;
      }
 
     displayBlogPosts();

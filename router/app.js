@@ -1,5 +1,5 @@
 'use strict'
-import {Route, start} from "../router/router.js"
+import Router from "../router/router.js"
 import { renderTemplate, loadHtml } from "../js/utils.js"
 
 // import js methods from js pages
@@ -59,43 +59,43 @@ const ROUTE_LIVE_VIDEO_VIEW_ONE = "/blog/video/([0-9]+)" // regex pattern as par
  *  the states of the application, switching between different views.
  * setDefaultFunktion; if theres no route, we execute pagenotfoundmethod. 
  */
-Route.setDefaultFunction(pageNotFound);
+Router.setDefaultFunction(pageNotFound);
 
 /**
  * Creating the routes for the app
  * route parameter; takes path and function. 
  */
-new Route(ROUTE_HOME, home)
+Router.addRoute(ROUTE_HOME, home)
    
-new Route(ROUTE_ABOUT, about)
+Router.addRoute(ROUTE_ABOUT, about)
 
-new Route(ROUTE_LOGIN, login)
+Router.addRoute(ROUTE_LOGIN, login)
 
-new Route(ROUTE_LOGOUT, logout)
+Router.addRoute(ROUTE_LOGOUT, logout)
 
-new Route(ROUTE_USERS, users)
+Router.addRoute(ROUTE_USERS, users)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
-new Route(ROUTE_WORK, work);  
+Router.addRoute(ROUTE_WORK, work);  
 
-new Route(ROUTE_CREATE_WORK, createWork)
+Router.addRoute(ROUTE_CREATE_WORK, createWork)
     .setPreFunction(pre)
     .setFailFunction(fail);
     
-new Route(ROUTE_BLOG, blog);
+Router.addRoute(ROUTE_BLOG, blog);
 
-new Route(ROUTE_CREATE_BLOG, createBlog)
+Router.addRoute(ROUTE_CREATE_BLOG, createBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
-new Route (ROUTE_BLOG_POST, blogPost)
+Router.addRoute(ROUTE_BLOG_POST, blogPost)
 
-new Route(ROUTE_EDIT_BLOG, editBlog)
+Router.addRoute(ROUTE_EDIT_BLOG, editBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
-new Route(ROUTE_LIVE_VIDEO_VIEW_ONE, liveVideoViewOne)
+Router.addRoute(ROUTE_LIVE_VIDEO_VIEW_ONE, liveVideoViewOne)
 
   
 /**
@@ -208,4 +208,4 @@ sessionStorage.clear();
 /**
  * we call this method defined in router.js
  */
-start();
+ Router.start();

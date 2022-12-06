@@ -23,16 +23,17 @@ async function createLiveVideo(event) {
     // check for required fields, and return if it does not contain one or more of them
     let title = checkInput("title")
     let date  = checkInput("date")
-    let url   = checkInput("url")
-    if (title || date || url) return
+    let videoUrl   = checkInput("url")
+    if (title || date || videoUrl) return
+
+    console.log(url);
     
     // post and check
     let response = await fetch(url, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST', 
+        credentials: "include" ,
         headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify(createPackage)
-    });
+        body: JSON.stringify(createPackage)});
     
     if (response.ok) {
         reset();
@@ -43,7 +44,7 @@ async function createLiveVideo(event) {
     }
 }
 
-async function updateLiveVideo(event) {
+async function updateLiveVideo(event, id) {
     event.preventDefault();
 
     // get values
@@ -55,7 +56,7 @@ async function updateLiveVideo(event) {
     };
 
     // patch and check
-    let response = await fetch(url, {
+    let response = await fetch(url + "/" + id, {
         method: "PATCH",
         credentials: "include",
         headers: {'Content-Type': 'application/json'}, 
@@ -75,22 +76,24 @@ let toBeUpdated;
 async function setupUpdate(id) {
     let submitButton = document.getElementById("create-button");
     submitButton.replaceWith(submitButton.cloneNode(true));
-    document.getElementById("create-button").addEventListener("click", (event) => updateLiveVideo(event));
+    document.getElementById("create-button").addEventListener("click", (event) => updateLiveVideo(event, id));
 
     document.getElementById("heading").innerText = "Update LiveVideo";
     document.getElementById("create-button").innerText = "Update";
 
     let response = await fetch(url + "/" + id, {
-        method: "Get",
+        method: "GET",
         credentials: "include",
         headers: {'Content-Type': 'application/json'}
     });
-    toBeUpdated = response.json();
+    toBeUpdated = await response.json();
 
     document.getElementById("title").value = toBeUpdated.title;
     document.getElementById("date").value = toBeUpdated.date;
     document.getElementById("intro").value = toBeUpdated.intro;
     document.getElementById("url").value = toBeUpdated.url;
+
+    loadAndPreviewThumbnail();
 }
 
 

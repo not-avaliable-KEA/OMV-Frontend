@@ -1,65 +1,34 @@
 import config from "../../../js/config.js"
 const blogPostUrl = config.url + "blogpost"
-const liveVideoUrl = config.url + "blogpost"
+const liveVideoUrl = config.url + "liveVideo"
 
 
-let posts;
-let blogPosts;
-let liveVideos = [
-    {
-        id: 1,
-        url: "https://www.youtube.com/watch?v=WNUZNXDIE2w",
-        title: "Eths - Crucifère (Official Live Video)",
-        intro: "Filmed live at the Divan du Monde in Paris, France on October 24, 2013. Audio available on the 'Ex Umbra In Solem' EP, out on March 14.",
-        date: "2014-3-14"
-    },
-    {
-        id: 2,
-        url: "https://www.youtube.com/watch?v=QlUyM9G5s-8",
-        title: "Architects - For Those That Wish to Exist (Full Album)",
-        intro: "Artist: Architects \nAlbum: For Those That Wish to Exist\nGenre: Metalcore / Alternative metal\nYear: 2021",
-        date: "2021-2-26"
-    },
-    {
-        id: 3,
-        url: "https://www.youtube.com/watch?v=8JpOcvvnX_s",
-        title: "UNLEASH THE ARCHERS - Faster Than Light (Official Video) | Napalm Records",
-        intro: "Being that this song is about racing off into the far corners of space, we thought it would be a fun idea to actually race each other in the music video to see which one of us was truly 'Faster Than Light'!  Of course we had to have some fun with it though, and added a little bit of excitement into the mix. Our director mentioned an older Stephen King novel called The Long Walk as inspiration for a way to spice up the video and we all agreed it would be hilarious! Check out the plot synopsis on Wikipedia if you haven't read it already... This track has turned into a favourite of the band and we knew it had to be a single the moment the finished product was in our hands. It's fast, fun, and is going to be an absolute blast to play live!",
-        date: "2022-12-24"
-    }
-];
+let posts = [];
+let blogPosts = [];
+let liveVideos = [];
 
 export default async function initBlog() {
     // get blog posts
     let response = await fetch(blogPostUrl);
     blogPosts = Array.from(await response.json());
-    blogPosts.forEach((post) => post.type = "post");
+    if (blogPosts.length > 0) {
+        blogPosts.forEach((post) => post.type = "post");
+    }
 
     // get live videos
-    liveVideos.forEach((video) => {
-        video.type = "video";
-        video.videoId = video.url.match(/watch\?v=([^\/?]+)/)[1];
-    });
+    response = await fetch(liveVideoUrl);
+    liveVideos = Array.from(await response.json());
+    if (liveVideos.length > 0) {
+        liveVideos.forEach((video) => {
+            video.type = "video";
+            video.videoId = video.url.match(/watch\?v=([^\/?]+)/)[1];
+        });
+    }
+    
 
     // join and sort
     posts = blogPosts.concat(liveVideos);
-    posts = posts.sort((a,b) => {
-        let valA, valB;
-
-        if (a.type === "video") {
-            valA = dateUTCParse(a.date);
-        } else {
-            valA = dateUTCParse(a.createdDate);
-        }
-        
-        if (b.type === "video") {
-            valB = dateUTCParse(b.date);
-        } else {
-            valB = dateUTCParse(b.createdDate);
-        }
-
-        return  valB - valA
-    });
+    posts = posts.sort((a,b) => extractUTCEpochTime(b) - extractUTCEpochTime(a) );
 
      // if logged in enable create button and set link
      if ((sessionStorage.getItem("username") != null && sessionStorage.getItem("username") !== "") && 
@@ -72,9 +41,14 @@ export default async function initBlog() {
     display();
 }
 
-function dateUTCParse(date) {
-    let temp = date.split(" ")[0].split("-");
-    return Date.UTC(temp[0], temp[1]-1, temp[2])
+function extractUTCEpochTime(elem) {
+    if (elem.type === "video") {
+        let temp = elem.date.split(/[-\s:]/);
+        return Date.UTC(temp[0], temp[1]-1, temp[2])
+    } else {
+        let temp = elem.createdDate.split(/[-\s:]/);
+        return Date.UTC(temp[0], temp[1]-1, temp[2], temp[3], temp[4])
+    }
 }
 
 function display() {

@@ -22,6 +22,7 @@ import {homeInit} from "../pages/home/home.js"
 
 // live video
 import liveVideoViewOneInit from "../pages/blog/LiveVideo/viewOne.js"
+import initCreateLiveVideo from "../pages/blog/LiveVideo/create/createLiveVideo.js"
 
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
@@ -31,27 +32,33 @@ const templateUsers = await loadHtml("./pages/user/users.html");
 const templateWork = await loadHtml("./pages/work/viewAll/viewWork.html");
 const templateCreateWork = await loadHtml("./pages/work/create/work.html");
 const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
-const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html")
+const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html");
 const templateCreateBlog = await loadHtml("./pages/blog/create/createBlog.html");
-const templateLiveVideoViewOne = await loadHtml("./pages/blog/LiveVideo/viewOne.html")
+const templateLiveVideoCreate = await loadHtml("./pages/blog/LiveVideo/create/createLiveVideo.html");
+const templateLiveVideoViewOne = await loadHtml("./pages/blog/LiveVideo/viewOne.html");
 
 
 /** 
  * Route constants.
  * 
  */
-const ROUTE_HOME = '/'
-const ROUTE_ABOUT = '/about'
-const ROUTE_LOGIN = "/login"
-const ROUTE_USERS = "/users"
+const ROUTE_HOME   = '/'
+const ROUTE_ABOUT  = '/about'
+const ROUTE_USERS  = "/users"
+const ROUTE_LOGIN  = "/login"
 const ROUTE_LOGOUT = "/logout"
-const ROUTE_WORK = "/work"
+
+const ROUTE_WORK        = "/work"
 const ROUTE_CREATE_WORK = "/create-work"
-const ROUTE_BLOG = "/blog"
-const ROUTE_BLOG_POST = "/blog/{id}"
+
+const ROUTE_BLOG        = "/blog"
+const ROUTE_BLOG_POST   = "/blog/{id}"      // standard parameter
 const ROUTE_CREATE_BLOG = "/create-blog"
-const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // standard parameter
-const ROUTE_LIVE_VIDEO_VIEW_ONE = "/blog/video/([0-9]+)" // regex pattern as parameter
+const ROUTE_EDIT_BLOG   = "/blog/{id}/edit" // standard parameter
+
+const ROUTE_LIVE_VIDEO_VIEW_ONE = "/blog/video/([0-9]+)"      // regex pattern as parameter
+const ROUTE_LIVE_VIDEO_CREATE   = "/create-video"
+const ROUTE_LIVE_VIDEO_EDIT     = "/blog/video/([0-9]+)/edit" // regex pattern as parameter
 
 /**
  * setting the default action
@@ -96,6 +103,14 @@ Router.addRoute(ROUTE_EDIT_BLOG, editBlog)
     .setFailFunction(fail);
 
 Router.addRoute(ROUTE_LIVE_VIDEO_VIEW_ONE, liveVideoViewOne)
+
+Router.addRoute(ROUTE_LIVE_VIDEO_CREATE, liveVideoCreate)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
+
+Router.addRoute(ROUTE_LIVE_VIDEO_EDIT, liveVideoEdit)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
 
   
 /**
@@ -172,6 +187,16 @@ function createWork(){
 function liveVideoViewOne(id) {
     renderTemplate(templateLiveVideoViewOne);
     liveVideoViewOneInit(id);
+}
+
+function liveVideoCreate() {
+    renderTemplate(templateLiveVideoCreate);
+    initCreateLiveVideo();
+}
+
+function liveVideoEdit(id) {
+    renderTemplate(templateLiveVideoCreate);
+    initCreateLiveVideo(id);
 }
 
 

@@ -1,4 +1,5 @@
-const url = "http://127.0.0.1:8080/api/v1/user/login";
+import config from "../../js/config.js";
+const url = config.url + "user/login";
 var attempt = 3; // Variable to count number of attempts.
 
 async function validateLogin(){

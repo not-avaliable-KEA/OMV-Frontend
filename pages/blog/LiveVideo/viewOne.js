@@ -1,19 +1,20 @@
+import config from "../../../js/config.js";
 
+const url = config.url + "liveVideo"
 
-let liveVideo = {
-    id: 1,
-    url: "https://www.youtube.com/watch?v=WNUZNXDIE2w",
-    title: "Eths - Crucifère (Official Live Video) ",
-    intro: "Filmed live at the Divan du Monde in Paris, France on October 24, 2013. Audio available on the 'Ex Umbra In Solem' EP, out on March 14.",
-    date: "2014-3-14"
-}
+let liveVideo;
 
 /**
  * @param {number} id 
  */
-export default function liveVideoViewOneInit(id) {
+export default async function liveVideoViewOneInit(id) {
     // fetch liveVideo
-
+    let response = await fetch(url + "/" + id, {
+        method: "GET",
+        credentials: "include",
+        headers: {'Content-Type': 'application/json'}
+    });
+    liveVideo = await response.json();
     
     display();
 }

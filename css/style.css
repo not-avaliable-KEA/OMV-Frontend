@@ -127,6 +127,15 @@ body {
   color: black;
 }
 
+.overlay{
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
 .overlay:hover {
   border-radius: 20px;
   background-color: white;

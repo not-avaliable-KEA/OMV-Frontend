@@ -25,6 +25,8 @@ async function createLiveVideo(event) {
     let date  = checkInput("date")
     let videoUrl   = checkInput("url")
     if (title || date || videoUrl) return
+    //if at least one of the values are empty it return true, and doesnt continue fetching. 
+    //if all three values contains values, it returns false, and continues in this method and fetches. 
 
     console.log(url);
     
@@ -98,12 +100,14 @@ async function setupUpdate(id) {
 
 
 function loadAndPreviewThumbnail() {
+    //get id url value, filter it, og set in the filtered URL in the source - which get the picture from url.
     let url = document.getElementById("url").value.match(/watch\?v=([^\/?]+)/)[1]
     document.getElementById("preview").src = `https://img.youtube.com/vi/${url}/hqdefault.jpg`
 }
 
 function reset() {
     let submitButton = document.getElementById("create-button");
+    //we clone the submitbutton, to remove the eventlisteners (to clear)
     submitButton.replaceWith(submitButton.cloneNode(true));
     document.getElementById("create-button").addEventListener("click", (event) => createLiveVideo(event));
     document.getElementById("url").addEventListener("input", () => loadAndPreviewThumbnail());
@@ -114,6 +118,12 @@ function reset() {
     document.getElementById("create-button").innerText = "Create";
 }
 
+/**
+ * We clear the form, set value empty, and remove, is valid, in value.
+ * Which means; if createvideo function returns true ; which means one of the values are 
+ * empty, forms is invalid, we clear that here. 
+ * 
+ */
 function clearInput(list) {
     list.forEach(elem => {
         document.getElementById(elem).value = "";
@@ -123,6 +133,7 @@ function clearInput(list) {
 }
 
 function checkInput(elementID) {
+    //we check if values are empty or valid. 
     if (document.getElementById(elementID).value === "") {
         document.getElementById(elementID).classList.add("is-invalid");
         return true

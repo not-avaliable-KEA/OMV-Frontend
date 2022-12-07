@@ -1,5 +1,5 @@
 'use strict'
-import {Route, start} from "../router/router.js"
+import Router from "../router/router.js"
 import { renderTemplate, loadHtml } from "../js/utils.js"
 
 // import js methods from js pages
@@ -20,6 +20,10 @@ import initBlogPost from "../pages/blog/viewSingle/blogPost.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
 import {homeInit} from "../pages/home/home.js"
 
+// live video
+import liveVideoViewOneInit from "../pages/blog/LiveVideo/viewOne.js"
+import initCreateLiveVideo from "../pages/blog/LiveVideo/create/createLiveVideo.js"
+
 // loading the pages
 const templateHome  = await loadHtml("./pages/home/home.html");
 const templateAbout = await loadHtml("./pages/about/about.html");
@@ -28,25 +32,33 @@ const templateUsers = await loadHtml("./pages/user/users.html");
 const templateWork = await loadHtml("./pages/work/viewAll/viewWork.html");
 const templateCreateWork = await loadHtml("./pages/work/create/work.html");
 const templateBlog  = await loadHtml("./pages/blog/viewAll/blog.html");
-const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html")
+const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html");
 const templateCreateBlog = await loadHtml("./pages/blog/create/createBlog.html");
+const templateLiveVideoCreate = await loadHtml("./pages/blog/LiveVideo/create/createLiveVideo.html");
+const templateLiveVideoViewOne = await loadHtml("./pages/blog/LiveVideo/viewOne.html");
 
 
 /** 
  * Route constants.
  * 
  */
-const ROUTE_HOME = '/'
-const ROUTE_ABOUT = '/about'
-const ROUTE_LOGIN = "/login"
-const ROUTE_USERS = "/users"
+const ROUTE_HOME   = '/'
+const ROUTE_ABOUT  = '/about'
+const ROUTE_USERS  = "/users"
+const ROUTE_LOGIN  = "/login"
 const ROUTE_LOGOUT = "/logout"
-const ROUTE_WORK = "/work"
+
+const ROUTE_WORK        = "/work"
 const ROUTE_CREATE_WORK = "/create-work"
-const ROUTE_BLOG = "/blog"
-const ROUTE_BLOG_POST = "/blog/{id}"
+
+const ROUTE_BLOG        = "/blog"
+const ROUTE_BLOG_POST   = "/blog/{id}"      // standard parameter
 const ROUTE_CREATE_BLOG = "/create-blog"
-const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
+const ROUTE_EDIT_BLOG   = "/blog/{id}/edit" // standard parameter
+
+const ROUTE_LIVE_VIDEO_VIEW_ONE = "/blog/video/([0-9]+)"      // regex pattern as parameter
+const ROUTE_LIVE_VIDEO_CREATE   = "/create-video"
+const ROUTE_LIVE_VIDEO_EDIT     = "/blog/video/([0-9]+)/edit" // regex pattern as parameter
 
 /**
  * setting the default action
@@ -54,39 +66,49 @@ const ROUTE_EDIT_BLOG = "/blog/{id}/edit" // regex parameter
  *  the states of the application, switching between different views.
  * setDefaultFunktion; if theres no route, we execute pagenotfoundmethod. 
  */
-Route.setDefaultFunction(pageNotFound);
+Router.setDefaultFunction(pageNotFound);
 
 /**
  * Creating the routes for the app
  * route parameter; takes path and function. 
  */
-new Route(ROUTE_HOME, home)
+Router.addRoute(ROUTE_HOME, home)
    
-new Route(ROUTE_ABOUT, about)
+Router.addRoute(ROUTE_ABOUT, about)
 
-new Route(ROUTE_LOGIN, login)
+Router.addRoute(ROUTE_LOGIN, login)
 
-new Route(ROUTE_LOGOUT, logout)
+Router.addRoute(ROUTE_LOGOUT, logout)
 
-new Route(ROUTE_USERS, users)
+Router.addRoute(ROUTE_USERS, users)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
-new Route(ROUTE_WORK, work);  
+Router.addRoute(ROUTE_WORK, work);  
 
-new Route(ROUTE_CREATE_WORK, createWork)
+Router.addRoute(ROUTE_CREATE_WORK, createWork)
     .setPreFunction(pre)
     .setFailFunction(fail);
     
-new Route(ROUTE_BLOG, blog);
+Router.addRoute(ROUTE_BLOG, blog);
 
-new Route(ROUTE_CREATE_BLOG, createBlog)
+Router.addRoute(ROUTE_CREATE_BLOG, createBlog)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
-new Route (ROUTE_BLOG_POST, blogPost)
+Router.addRoute(ROUTE_BLOG_POST, blogPost)
 
-new Route(ROUTE_EDIT_BLOG, editBlog)
+Router.addRoute(ROUTE_EDIT_BLOG, editBlog)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
+
+Router.addRoute(ROUTE_LIVE_VIDEO_VIEW_ONE, liveVideoViewOne)
+
+Router.addRoute(ROUTE_LIVE_VIDEO_CREATE, liveVideoCreate)
+    .setPreFunction(pre)
+    .setFailFunction(fail);
+
+Router.addRoute(ROUTE_LIVE_VIDEO_EDIT, liveVideoEdit)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
@@ -143,8 +165,7 @@ function blogPost(id){
 }
 
 function createBlog() {
-    renderTemplate(templateCreatBlog);
-
+    renderTemplate(templateCreateBlog);
     initCreateBlog();
 }
 
@@ -162,6 +183,23 @@ function createWork(){
     renderTemplate(templateCreateWork);
     coversInit();
 }
+
+function liveVideoViewOne(id) {
+    renderTemplate(templateLiveVideoViewOne);
+    liveVideoViewOneInit(id);
+}
+
+function liveVideoCreate() {
+    renderTemplate(templateLiveVideoCreate);
+    initCreateLiveVideo();
+}
+
+function liveVideoEdit(id) {
+    renderTemplate(templateLiveVideoCreate);
+    initCreateLiveVideo(id);
+}
+
+
 /**
  * Fail action.
  */
@@ -195,4 +233,4 @@ sessionStorage.clear();
 /**
  * we call this method defined in router.js
  */
-start();
+ Router.start();

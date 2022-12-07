@@ -189,7 +189,7 @@ async function createcover(evt) {
     body: JSON.stringify(createPackage),
   });
 
-  alert("artistName" + " was created", "success");
+  alert( artist + " was created", "success");
 
   imageFile = "";
   getCovers();

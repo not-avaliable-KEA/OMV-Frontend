@@ -227,9 +227,6 @@ function pre() {
     document.querySelector('#view').innerHTML = ('page-not-found-404'); 
 }
 
-// clears the session, when loading the page, to fix seeing buttons before logged in
-sessionStorage.clear();
-
 /**
  * we call this method defined in router.js
  */

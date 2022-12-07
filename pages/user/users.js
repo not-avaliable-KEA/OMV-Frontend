@@ -1,4 +1,5 @@
-const url = "http://localhost:8080/api/v1/user"
+import config from "../../js/config.js";
+const url = config.url + "user";
 
 let users = []
 
@@ -11,7 +12,10 @@ export default async function userInit() {
  * Responsible for getting user data from the database
  */
 async function getUsers() {
-    let response = await fetch(url)
+    let response = await fetch(url, {
+        credentials: "include"
+    })
+    console.log(response);
     users = Array.from(await response.json());
 
     displayUsers();

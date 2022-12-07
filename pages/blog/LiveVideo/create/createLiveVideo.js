@@ -23,12 +23,13 @@ async function createLiveVideo(event) {
     // check for required fields, and return if it does not contain one or more of them
     let title = checkInput("title")
     let date  = checkInput("date")
-    let videoUrl   = checkInput("url")
-    if (title || date || videoUrl) return
+    let videoUrl   = checkInput("url", /watch\?v=([^\/?]+)/)
+    if (title || date || videoUrl || !hasValidUrl) {
+        loadAndPreviewThumbnail()
+        return
+    }
     //if at least one of the values are empty it return true, and doesnt continue fetching. 
     //if all three values contains values, it returns false, and continues in this method and fetches. 
-
-    console.log(url);
     
     // post and check
     let response = await fetch(url, {
@@ -98,11 +99,20 @@ async function setupUpdate(id) {
     loadAndPreviewThumbnail();
 }
 
-
+let hasValidUrl
 function loadAndPreviewThumbnail() {
-    //get id url value, filter it, og set in the filtered URL in the source - which get the picture from url.
-    let url = document.getElementById("url").value.match(/watch\?v=([^\/?]+)/)[1]
-    document.getElementById("preview").src = `https://img.youtube.com/vi/${url}/hqdefault.jpg`
+    try {
+        //get id url value, filter it, og set in the filtered URL in the source - which get the picture from url.
+        let url = document.getElementById("url").value.match(/watch\?v=([^\/?]+)/)[1]
+        document.getElementById("preview").src = `https://img.youtube.com/vi/${url}/hqdefault.jpg`
+        hasValidUrl = true
+        document.getElementById("url").classList.add("is-valid");
+        document.getElementById("url").classList.remove("is-invalid");
+    } catch (error) {
+        hasValidUrl = false
+        document.getElementById("url").classList.remove("is-valid");
+        document.getElementById("url").classList.add("is-invalid");
+    }
 }
 
 function reset() {

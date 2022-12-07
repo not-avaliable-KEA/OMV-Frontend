@@ -1,6 +1,7 @@
 'use strict'
 import {Route, start} from "../router/router.js"
 import { renderTemplate, loadHtml } from "../js/utils.js"
+import config from "../js/config.js"
 
 // import js methods from js pages
 // login
@@ -123,6 +124,7 @@ function login() {
 }
 
 function logout() {
+    fetch (config.url + "user/logout", {credentials: 'include'})
     sessionStorage.clear();
     window.location = "#/"
 }

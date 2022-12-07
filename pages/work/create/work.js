@@ -41,7 +41,7 @@ function displayCovers() {
     let options = { year: "numeric", month: "long", day: "numeric" };
 
     elem.innerHTML = `
-        <td class="col-2"><img class="image rounded-0" src="${
+        <td class="col-2"><img class="image-work rounded" src="${
           cover.image
         }"></td>
         <td class="col-2">${cover.artist}</td>
@@ -61,6 +61,7 @@ function displayCovers() {
 
     tableBody.appendChild(elem);
   });
+  
 }
 
 /**

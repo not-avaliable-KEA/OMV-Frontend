@@ -14,12 +14,13 @@ import userInit from "../pages/user/users.js"
 import coversInit from "../pages/work/create/work.js"
 import workInit from "../pages/work/viewAll/viewWork.js"
 
+//Home 
+import homeConstructionInit from "../pages/home/homeConstructor.js"
 
 // blog
 import initBlog from "../pages/blog/viewAll/blog.js"
 import initBlogPost from "../pages/blog/viewSingle/blogPost.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
-import {homeInit} from "../pages/home/home.js"
 
 // live video
 import liveVideoViewOneInit from "../pages/blog/LiveVideo/viewOne.js"
@@ -133,7 +134,7 @@ function cloneHtmlTemplate(id) {
  */
 function home() {
     renderTemplate(templateHome);
-    homeInit();
+    homeConstructionInit();
 }
 
 /**

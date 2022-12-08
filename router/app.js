@@ -18,7 +18,10 @@ import workInit from "../pages/work/viewAll/viewWork.js"
 import initBlog from "../pages/blog/viewAll/blog.js"
 import initBlogPost from "../pages/blog/viewSingle/blogPost.js"
 import initCreateBlog from "../pages/blog/create/createBlog.js"
+
+//home
 import {homeInit} from "../pages/home/home.js"
+import homeConstructerInit from "../pages/home/homeConstructor.js"
 
 // live video
 import liveVideoViewOneInit from "../pages/blog/LiveVideo/viewOne.js"
@@ -130,6 +133,7 @@ function cloneHtmlTemplate(id) {
 function home() {
     renderTemplate(templateHome);
     homeInit();
+    homeConstructerInit();
 }
 
 /**

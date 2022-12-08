@@ -1,6 +1,7 @@
 'use strict'
 import Router from "../router/router.js"
 import { renderTemplate, loadHtml } from "../js/utils.js"
+import config from "../js/config.js"
 
 // import js methods from js pages
 // login
@@ -39,7 +40,7 @@ const templateBlogPost = await loadHtml("./pages/blog/viewSingle/blogPost.html")
 const templateCreateBlog = await loadHtml("./pages/blog/create/createBlog.html");
 const templateLiveVideoCreate = await loadHtml("./pages/blog/LiveVideo/create/createLiveVideo.html");
 const templateLiveVideoViewOne = await loadHtml("./pages/blog/LiveVideo/viewOne.html");
-
+const templateContact = await  loadHtml("./pages/contact/contact.html");
 
 /** 
  * Route constants.
@@ -62,6 +63,8 @@ const ROUTE_EDIT_BLOG   = "/blog/{id}/edit" // standard parameter
 const ROUTE_LIVE_VIDEO_VIEW_ONE = "/blog/video/([0-9]+)"      // regex pattern as parameter
 const ROUTE_LIVE_VIDEO_CREATE   = "/create-video"
 const ROUTE_LIVE_VIDEO_EDIT     = "/blog/video/([0-9]+)/edit" // regex pattern as parameter
+
+const ROUTE_CONTACT = "/contact"
 
 /**
  * setting the default action
@@ -115,6 +118,7 @@ Router.addRoute(ROUTE_LIVE_VIDEO_EDIT, liveVideoEdit)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
+Router.addRoute(ROUTE_CONTACT, contact);
   
 /**
  * Clones an embedded HTML template, from the HTML file, via an id.
@@ -149,6 +153,7 @@ function login() {
 }
 
 function logout() {
+    fetch (config.url + "user/logout", {credentials: 'include'})
     sessionStorage.clear();
     window.location = "#/"
 }
@@ -186,6 +191,10 @@ function work(){
 function createWork(){
     renderTemplate(templateCreateWork);
     coversInit();
+}
+
+function contact(){
+    renderTemplate(templateContact);
 }
 
 function liveVideoViewOne(id) {
@@ -230,9 +239,6 @@ function pre() {
  function pageNotFound() {
     document.querySelector('#view').innerHTML = ('page-not-found-404'); 
 }
-
-// clears the session, when loading the page, to fix seeing buttons before logged in
-sessionStorage.clear();
 
 /**
  * we call this method defined in router.js

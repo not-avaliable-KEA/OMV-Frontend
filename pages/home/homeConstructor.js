@@ -1,4 +1,5 @@
 import config from "../../../js/config.js";
+import { homeInit } from "./home.js";
 
 const url = config.url + "work";
 
@@ -16,41 +17,46 @@ export default async function homeConstructionInit(){
     let response = await fetch(url);
     covers = Array.from(await response.json());
     
-    console.log(covers);
-    createSlides()
+        createSlides()
+      
   }
 
 //Construct the rows/slide containers
 function createSlides() {
-    //set the number of slides to create
-    numberOfSlides = Math.ceil(covers.length/3);
+  if (covers.length > 0){
+      //set the number of slides to create
+      numberOfSlides = Math.ceil(covers.length/3);
 
-    //console.log(numberOfSlides)
+      //console.log(numberOfSlides)
 
-    //Grab the div from the HTML Document we're gonna insert into later
-    let templateDiv = document.getElementById("carouselContainer")    
-    templateDiv.innerHTML = ""
+      //Grab the div from the HTML Document we're gonna insert into later
+      let templateDiv = document.getElementById("carouselContainer")    
+      templateDiv.innerHTML = ""
 
-    //create the slides for the slider based on number of works
-    for (let i = 0; i < numberOfSlides; i++){
+      //create the slides for the slider based on number of works
+      for (let i = 0; i < numberOfSlides; i++){
 
-      //create the element
-      let element = document.createElement("div")
-      //give it an id - used later to add images
-      element.id = `slider-${i}`
+        //create the element
+        let element = document.createElement("div")
+        //give it an id - used later to add images
+        element.id = `slider-${i}`
 
-      //make sure only the first slide have the active class
-      if (i === 0){
-        element.className = "active container-slide row"
-      } else {
-        element.className = "container-slide row"
+        //make sure only the first slide have the active class
+        if (i === 0){
+          element.className = "active container-slide row"
+        } else {
+          element.className = "container-slide row"
+        }
+
+        //Append the element
+        templateDiv.appendChild(element)
       }
-
-      //Append the element
-      templateDiv.appendChild(element)
-    }
+    
     
     createSlideInnerElements()
+    } else {
+      homeInit();
+    }
   }
 
   function createSlideInnerElements(){
@@ -98,13 +104,12 @@ function createSlides() {
 
                 slideDiv.appendChild(element)
                 }
-
-
-     
-
                 coverTracker++;
 
           }
       }
+
+      homeInit();
+
   }
 

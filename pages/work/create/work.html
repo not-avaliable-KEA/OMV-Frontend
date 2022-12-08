@@ -1,58 +1,113 @@
 <div class="template">
-    <!--<table>-->
-        <div id ="table" class="container">
-            <table class="table table-striped">
-              <thead>
-                <tr class="table-dark">
-                  <th scope="col" class="col-2">Image</th>
-                  <th scope="col" class="col-2">Artist Name</th>
-                  <th scope="col" class="col-2">Single Name</th>
-                  <th scope="col" class="col-2">Release Date</th>
-                  <th scope="col" class="col-2"></th>
-                </tr>
-              </thead>
-              <tbody id="cover-body">
-              </tbody>
-            </table>
+  <!--<table>-->
+  <div id="table" class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr class="table-dark">
+          <th scope="col" class="col-2">Image</th>
+          <th scope="col" class="col-2">Artist</th>
+          <th scope="col" class="col-2">Release</th>
+          <th scope="col" class="col-2">Release Date</th>
+          <th scope="col" class="col-2">Credit</th>
+          <th scope="col" class="col-2">Commentary</th>
+          <th scope="col" class="col-2"></th>
+        </tr>
+      </thead>
+      <tbody id="cover-body"></tbody>
+    </table>
+  </div>
+  <!--<table>-->
+
+  <div class="col card rounded m-2 p-2">
+    <div class="card-body">
+      <h5 class="card-title" id="upload-heading">Upload cover</h5>
+      <div><br /></div>
+      <form id="cover" class="form" id="cover-form">
+        <div class="row">
+          <div>
+            <label for="artist-input">Artist</label>
+            <input
+              id="artist-input"
+              class="col"
+              name="artist-input"
+              type="text"
+              required
+            />
           </div>
-    <!--<table>-->
+          <div><br /></div>
 
-    <div class="col card rounded m-2 p-2">
-        <div class="card-body">
-            <h5 class="card-title" id="upload-heading">Upload cover</h5>
-            <div><br></div>
-            <form id="cover" class="form" id="cover-form">
-                <div class="row">
-                        <div>
-                        <label for="artist-name-input">Artist name</label>
-                        <input id="artist-name-input" class="col" name="artist-name-input" type="text" required>
-                        </div>
-                        <div><br></div>
+          <div>
+            <label for="release-input">Release</label>
+            <input
+              id="release-input"
+              class="col"
+              name="release-input"
+              type="text"
+              required
+            />
+          </div>
+          <div><br /></div>
 
-                        <div>
-                        <label for="single-name-input">Single name</label>
-                        <input id="single-name-input" class="col" name="single-name-input" type="text" required>
-                        </div>
-                            <div><br></div>
+          <div>
+            <label for="release-date-input">Release Date</label>
+            <input
+              id="release-date-input"
+              class="col"
+              name="release-date-input"
+              type="date"
+              required
+            />
+          </div>
+          <div><br /></div>
 
-                        <div>
-                            <label for="release-date-input">Release Date</label>
-                            <input id="release-date-input" class="col" name="release-date-input" type="date" required>
-                        </div>
-                            <div><br></div>
+          <div>
+            <label for="credit-input">Credit</label>
+            <input
+              id="credit-input"
+              class="col"
+              name="credit-input"
+              type="text"
+              required
+            />
+          </div>
+          <div><br /></div>
 
-                        <div>
-                        <label for="cover-image" class="col"></label>
-                        <input id="cover-image" class="form-control-file" name="cover-image" type="file" accept="image/*">
-                        </div>
+          <div>
+            <label for="commentary-input">Commentary</label>
+            <input
+              id="commentary-input"
+              class="col"
+              name="commentary-input"
+              type="text"
+              required
+            />
+          </div>
+          <div><br /></div>
 
-                        <div>
-                        <label class="col"></label>
-                        <button id="submit" type="submit" class="form-control" style="background-color: whitesmoke">Create</button>
-                        </div>
-                    </form>
-                </div>
-            </form>
+          <div>
+            <label for="cover-image" class="col"></label>
+            <input
+              id="cover-image"
+              class="form-control-file"
+              name="cover-image"
+              type="file"
+              accept="image/*"
+            />
+          </div>
+
+          <div>
+            <label class="col"></label>
+            <button
+              id="submit"
+              type="submit"
+              class="form-control"
+              style="background-color: whitesmoke"
+            >
+              Create
+            </button>
+          </div>
         </div>
+      </form>
     </div>
+  </div>
 </div>

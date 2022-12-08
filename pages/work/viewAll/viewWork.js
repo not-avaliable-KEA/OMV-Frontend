@@ -32,9 +32,14 @@ export default async function workInit(){
         // add html and info
         div.innerHTML = 
             `<div class="overlay">
-                <img class="image rounded-0" src="${work.image}">
+                <img class="image-work rounded" src="${work.image}">
             </div>
-            <div class="text-overlay">${work.singleName}</div>`;
+            <div class="text-overlay-work">
+                                Artist: ${work.artist}<br>
+                                Release: ${work.releaseName}<br> 
+                                Release date: ${work.releaseDate}<br>
+                                Credit: ${work.credit}<br>
+                                Commentary: ${work.commentary}</div>`;
 
         // add the classes to the div
         div.classList.add("image-container");

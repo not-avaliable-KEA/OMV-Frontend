@@ -68,6 +68,28 @@ body {
 
 }
 
+/* Login section */
+
+.container-login{
+  background-color:rgb(175, 194, 191) ;
+}
+
+.login-button{
+  background-color: rgb(175, 194, 191);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+
+
 /*
 .fade {
   animation-name: fade;
@@ -93,14 +115,6 @@ body {
   border-radius: 20px;
 }
 
-
-
-.image-sidebar {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 .image-container {
   position: relative;
   text-align: center;
@@ -111,6 +125,15 @@ body {
 .image-container:hover {
   transform: scale(1.05);
   color: black;
+}
+
+.overlay{
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s;
+  border-radius: 20px;
+  object-fit: cover;
 }
 
 .overlay:hover {
@@ -127,6 +150,23 @@ body {
   opacity: 100%;
   opacity: 1;
 }
+
+
+.text-overlay-work{
+  text-align: center;
+  font-size: 1.5vh;
+  
+}
+
+.image-work{
+  display: block;
+  width: 100%;
+  height: 30vh;;
+  transition: transform 0.2s;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
 
 
 
@@ -186,14 +226,24 @@ footer {
   display: block;
   min-height: 7vh;
   width: 100%;
-  text-align: center;
-  font-size: 1.5vh;
+  justify-content: center;
+}
+
+.nav-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5vh;
+  list-style-type: none;
 }
 
 .fa-instagram {
-  color: black;
-  font-size: 1.5vh;
-  top: 3vh;
+  
+  font-size: 3vh;
+}
+#loginlink{
+  text-decoration: none;
+  cursor: default;
 }
 
 h3 {
@@ -204,8 +254,7 @@ h2 {
 }
 
 p {
-  text-align: justify;
-  font-size: 2vh;
+  font-size: 2.5vh;
 }
 
 

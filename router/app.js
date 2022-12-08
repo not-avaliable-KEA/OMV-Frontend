@@ -115,7 +115,7 @@ Router.addRoute(ROUTE_LIVE_VIDEO_EDIT, liveVideoEdit)
     .setPreFunction(pre)
     .setFailFunction(fail);
 
-new Route(ROUTE_CONTACT, contact);
+Router.addRoute(ROUTE_CONTACT, contact);
   
 /**
  * Clones an embedded HTML template, from the HTML file, via an id.
